@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UtilisateurController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -18,9 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-route::get('/test', function(){
-    return view('home2');
-});
+Route::resource('/utilisateur', UtilisateurController::class);
 
 Auth::routes();
 
