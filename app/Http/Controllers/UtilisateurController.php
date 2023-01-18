@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UtilisateurController extends Controller
 {
@@ -14,8 +15,8 @@ class UtilisateurController extends Controller
      */
     public function index()
     {
-        $user = user::get()->all();
-        return view('utilisateur.index', compact('user'));
+        $utilisateurs = User::orderBy('id','asc')->paginate(4);
+        return view('utilisateur.index', compact('utilisateurs'));
     }
 
     /**
@@ -37,31 +38,23 @@ class UtilisateurController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'          =>  'required',
-            'email'         =>  'required|email|unique:users',
-            'photo_profil'         =>  'required|image|mimes:jpg,png,jpeg,gif,svg',
+            'username'  =>  'required',
+            'email' =>  'required|email|unique:users',
             'fonction' => 'required',
             'password' => 'required',
         ]);
 
-        $file_name = time() . '.' . request()->photo_profil->getClientOriginalExtension();
-
-        request()->profil_image->move(public_path('images'), $file_name);
-
-        $utilisateur = new User;
-
-        $utilisateur->name = $request->name;
-        $utilisateur->email = $request->email;
-        $utilisateur->fonction = $request->fonction;
-        $utilisateur->photo_profil = $file_name;
-        $utilisateur->password = $password;
 
 
+        return User::create([
+            'username' => $request['username'],
+            'email' => $request['email'],
+            'fonction' =>$request['fonction'],
+            'password' => Hash::make($request['password']),
+        ]);
 
-        $utilisateur->save();
+        return redirect()->route('utilisateur.create')->with('Succès','.');
 
-        return redirect()->route('utlisateur.index')->with('success', 'Student Added successfully.');
-  
     }
 
     /**
@@ -83,7 +76,8 @@ class UtilisateurController extends Controller
      */
     public function edit($id)
     {
-        //
+        $utilisateur = User::findOrFail($id);
+        return view('utilisateur.edit', compact('utilisateur'));
     }
 
     /**
@@ -95,7 +89,23 @@ class UtilisateurController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'username'  =>  'required',
+            'email' =>  'required',
+            'fonction' => 'required',
+            'password' => 'required',
+        ]);
+
+        $update_utilisateur = User::findOrFail($id);
+        $update_utilisateur->username = $request->get('username');
+        $update_utilisateur->email = $request->get('email');
+        $update_utilisateur->fonction = $request->get('fonction');
+        $update_utilisateur->password = $request->get('password');
+
+        $update_utilisateur->update();
+
+        return redirect('/utilisateur')->with('success', 'Personnage Modifié avec succès');
+
     }
 
     /**
@@ -106,6 +116,33 @@ class UtilisateurController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $utilisateur = User::findOrFail($id);
+        $utilisateur->delete();
+
+        return redirect('/utilisateur')->with('success', 'Personnage Modifié avec succès');
     }
+
+
+    public function updatePassword(Request $request)
+{
+        # Validation
+        $request->validate([
+            'old_password' => 'required',
+            'new_password' => 'required|confirmed',
+        ]);
+
+
+        #Match The Old Password
+        if(!Hash::check($request->old_password, auth()->user()->password)){
+            return back()->with("error", "Old Password Doesn't match!");
+        }
+
+
+        #Update the new Password
+        User::whereId(auth()->user()->id)->update([
+            'password' => Hash::make($request->new_password)
+        ]);
+
+        return back()->with("status", "Password changed successfully!");
+}
 }

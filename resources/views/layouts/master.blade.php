@@ -13,7 +13,6 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
-    <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
 
     <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -24,6 +23,7 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"/>
 
+  <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
 
 
     <!-- Scripts -->
@@ -161,7 +161,7 @@
                                         </li>
 
                                         <li>
-                                        <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                                        <a class="dropdown-item d-flex align-items-center" href="#">
                                             <i class="fa-solid fa-user"></i>
                                             <span>Mon Profil</span>
                                         </a>
@@ -175,7 +175,7 @@
                                             onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">
                                              <i class="fa-solid fa-right-from-bracket"></i>
-                                            {{ __('Se deconnecter') }}
+                                            {{ __('Se Deconnecter') }}
                                         </a>
 
                                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -309,7 +309,7 @@
             <!-- ======= Footer ======= -->
             <footer id="footer" class="footer">
                 <div class="copyright">
-                &copy; Copyright <strong><span>Firewall-Agency</span></strong>. Tout droits réservés
+                &copy; Copyright <strong><span>Firewall Agency</span></strong>. Tout droits réservés
                 </div>
                 <div class="credits">
                 Version 1.0

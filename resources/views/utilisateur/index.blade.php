@@ -22,96 +22,88 @@
                         <a href="{{ route('utilisateur.create') }}">Ajouter un Utilisateur</a>
                     </div>
                 </div>
-                <table class="table mt-5">
-                  <thead class="table-dark">
-                    <tr class="mb-3">
-                      <th scope="col">#</th>
-                      <th scope="col">Nom Complet</th>
-                      <th scope="col">Email</th>
-                      <th scope="col">Fonction</th>
-                      <th scope="col">Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>Jacob</td>
-                      <td>Thornton</td>
-                      <td>@fat</td>
-                      <td class="d-flex"><a href="" style="margin-right: 10px;">Editer</a> <a href="">Supprimer</a></td>
-                    </tr>
 
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>Jacob</td>
-                      <td>Thornton</td>
-                      <td>@fat</td>
-                      <td class="d-flex"><a href="" style="margin-right: 10px;">Editer</a> <a href="">Supprimer</a></td>
-                    </tr>
-                    
-                  </tbody>
+
+
+                <table class="table table-striped table-hover mt-5">
+                    <thead>
+                        <tr>
+                            <th>
+                                <span class="custom-checkbox">
+                                    <input type="checkbox" id="selectAll">
+                                    <label for="selectAll"></label>
+                                </span>
+                            </th>
+                            <th>Nom d'utilisateur</th>
+                            <th>Email</th>
+                            <th>Fonction</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($utilisateurs as $utilisateur)
+                            <tr>
+                                <td>
+                                    <span class="custom-checkbox">
+                                        <input type="checkbox" id="checkbox1" name="options[]" value="1">
+                                        <label for="checkbox1"></label>
+                                    </span>
+                                </td>
+                                <td>{{ $utilisateur->username }}</td>
+                                <td>{{ $utilisateur->email }}</td>
+                                <td>{{ $utilisateur->fonction }}</td>
+
+
+
+                                <td>
+                                    <form action="{{ route('utilisateur.destroy',$utilisateur->id) }}" method="Post">
+                                        <a class="btn btn-primary" href="{{ route('utilisateur.edit',$utilisateur->id) }}">
+                                            <i class="fa-solid fa-pen"></i>
+                                        </a>
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="fa-solid fa-trash" style="color: red;"></i>
+                                        </button>
+                                    </form>
+                                </td>
+
+
+
+
+
+                                {{-- <td>
+                                    <a href="" class="edit"></a>
+                                    <a href="{{route('utilisateur.destroy',$utilisateur->id) }}" class="delete"></a>
+
+
+                                </td> --}}
+                            </tr>
+                        @endforeach
+
+                    </tbody>
                 </table>
+                <div class="clearfix mt-3">
+                    <div class="hint-text mb-3">Showing <b>5</b> out of <b>100</b> entries</div>
+                    <ul class="pagination">
+                        <li class="page-item disabled"><a href="#">Précedent</a></li>
+                        <li class="page-item active"><a href="#" class="page-link">1</a></li>
+                        <li class="page-item"><a href="#" class="page-link">2</a></li>
+                        <li class="page-item "><a href="#" class="page-link">3</a></li>
+                        <li class="page-item"><a href="#" class="page-link">4</a></li>
+                        <li class="page-item"><a href="#" class="page-link">5</a></li>
+                        <li class="page-item"><a href="#" class="page-link">Suivant</a></li>
+                    </ul>
+                </div>
+
+
             </div>
-            
+
+
+
           </div>
 
-          <!-- <div class="col-lg-4">
-            <h4 class="mb-3">Ajout d'un Utilisateur</h4>
-            <form class="row g-3 needs-validation" novalidate>
-                
-                <div class="row mb-3">
-                    <div class="col-6">
-                      <label for="nom_complet" class="form-label">Nom Complet</label>
-                      <input type="text" name="name" class="form-control" id="name" required>
-                      <div class="invalid-feedback">Please, enter your name!</div>
-                    </div>
-      
-                    <div class="col-6">
-                      <label for="email" class="form-label">Email</label>
-                      <input type="email" name="email" class="form-control" id="yourEmail" required>
-                      <div class="invalid-feedback">Please enter a valid Email adddress!</div>
-                    </div>
-                </div>
 
-                <div class="row mb-3">
-                    <div class="col-6">
-                      <label for="nom_complet" class="form-label">Fonction</label>
-                      <select class="form-select" aria-label="Default select example">
-                        <option selected>Fonction</option>
-                        <option value="Partenaires">Partenaires</option>
-                        <option value="Recouvreurs">Recouvreurs</option>
-                        <option value="Comptables">Comptables</option>
-                      </select>
-                    </div>
-    
-                    <div class="col-6">
-                      <label for="nom_complet" class="form-label">Photo de profil</label>
-                      <input type="file" name="photo_profil" class="form-control" id="photo_profil" required>
-                      <div class="invalid-feedback">Please, enter your name!</div>
-                    </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-6">
-                      <label for="yourPassword" class="form-label">Password</label>
-                      <input type="password" name="password" class="form-control" id="yourPassword" required>
-                      <div class="invalid-feedback">Please enter your password!</div>
-                  </div>
-
-                  <div class="col-6">
-                    <label for="yourPassword" class="form-label">Confirmer le mot de passe</label>
-                    <input type="password" name="password" class="form-control" id="yourPassword" required>
-                    <div class="invalid-feedback">Please enter your password!</div>
-                  </div>
-              </div>
-
-              <div class="col-12">
-                <button class="btn btn-primary w-100" type="submit">Ajouter le compte</button>
-              </div>
-              
-            </form>
-          </div> -->
-        
 
       </div>
     </section>
