@@ -36,7 +36,22 @@ class PlatController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nom'  =>  'required',
+            'description' =>  'required|max:255',
+            'images' => 'required|file:jpg,png,svg',
+            'prix' => 'required|integer',
+        ]);
+
+        return plat::create([
+            'nom' => $request['nom'],
+            'description' => $request['description'],
+            'images' =>$request['images'],
+            'prix' =>$request['prix'],
+        ]);
+
+        return redirect('/plat.index')->with('success', 'Personnage Ajouter avec succès');
+
     }
 
     /**

@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('plats', function (Blueprint $table) {
             $table->id();
+            $table->string('nom');
+            $table->string('description');
+            $table->string('prix');
+            $table->string('images');
             $table->timestamps();
         });
     }
