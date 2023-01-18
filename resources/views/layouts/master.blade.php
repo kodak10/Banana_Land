@@ -211,7 +211,6 @@
                                     </a>
                                   </li><!-- End Dashboard Nav -->
 
-
                                   <li class="nav-item">
                                     <a class="nav-link collapsed d-flex justify-content-between" data-bs-target="#admin" data-bs-toggle="collapse" href="#">
                                       <i class="fa-solid fa-user"></i><span>Administrateur</span><i class="fa-solid fa-angle-down"></i>
@@ -223,33 +222,25 @@
                                         </a>
                                       </li>
                                       <li>
+                                        <a href="/chariot">
+                                          <i class="fa-solid fa-circle"></i><span>Gestion des Chariots</span>
+                                        </a>
+                                      </li>
+                                      <li>
                                         <a href="/plat">
                                           <i class="fa-solid fa-circle"></i><span>Gestion des Plats</span>
                                         </a>
                                       </li>
                                       <li>
-                                        <a href="/message">
-                                          <i class="fa-solid fa-circle"></i><span>Messages</span>
+                                        <a href="/vente">
+                                          <i class="fa-solid fa-circle"></i><span>Gestion des Ventes</span>
                                         </a>
                                       </li>
                                       <li>
-                                        <a href="/">
-                                          <i class="fa-solid fa-circle"></i><span>Link</span>
+                                        <a href="/transfert">
+                                          <i class="fa-solid fa-circle"></i><span>Gestion des Transferts</span>
                                         </a>
                                       </li>
-                                    </ul>
-                                  </li><!-- End Icons Nav -->
-
-                                  <li class="nav-item">
-                                    <a class="nav-link collapsed d-flex justify-content-between" data-bs-target="#recouvreur" data-bs-toggle="collapse" href="#">
-                                      <i class="fa-solid fa-coins"></i><span>Recouvreurs</span><i class="fa-solid fa-angle-down"></i>
-                                    </a>
-                                    <ul id="recouvreur" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                                        <li>
-                                          <a href="/recouvreur">
-                                            <i class="fa-solid fa-circle"></i><span>Consultation</span>
-                                          </a>
-                                        </li>
                                     </ul>
                                   </li><!-- End Icons Nav -->
 
@@ -259,13 +250,12 @@
                                     </a>
                                     <ul id="comptable" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                                         <li>
-                                          <a href="/comptable">
+                                          <a href="#">
                                             <i class="fa-solid fa-circle"></i><span>Consultation</span>
                                           </a>
                                         </li>
                                     </ul>
                                   </li><!-- End Icons Nav -->
-
 
 
                                   <li class="nav-heading">Pages</li>
