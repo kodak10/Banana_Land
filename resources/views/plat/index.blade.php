@@ -24,55 +24,57 @@
                     </div>
 
 
-
-                    <table class="table table-striped table-hover mt-5">
-                        <thead>
-                            <tr>
-                                <th>
-                                    <span class="custom-checkbox">
-                                        <input type="checkbox" id="selectAll">
-                                        <label for="selectAll"></label>
-                                    </span>
-                                </th>
-                                <th>Nom</th>
-                                <th>Description</th>
-                                <th>Prix</th>
-                                <th>Image</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($plats as $plat)
+                    <div class="table-responsive">
+                            <table class="table table-striped table-hover mt-5">
+                            <thead>
                                 <tr>
-                                    <td>
+                                    <th>
                                         <span class="custom-checkbox">
-                                            <input type="checkbox" id="checkbox1" name="options[]" value="1">
-                                            <label for="checkbox1"></label>
+                                            <input type="checkbox" id="selectAll">
+                                            <label for="selectAll"></label>
                                         </span>
-                                    </td>
-                                    <td>{{ $plat->nom }}</td>
-                                    <td>{{ $plat->description }}</td>
-                                    <td>{{ $plat->prix }}</td>
-                                    <td>{{ $plat->Image }}</td>
-
-                                    <td>
-                                        <form action="{{ route('plat.destroy',$plat->id) }}" method="Post">
-                                            <a class="btn btn-primary" href="{{ route('plat.edit',$plat->id) }}">
-                                                <i class="fa-solid fa-pen"></i>
-                                            </a>
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">
-                                                <i class="fa-solid fa-trash" style="color: red;"></i>
-                                            </button>
-                                        </form>
-                                    </td>
-
+                                    </th>
+                                    <th>Nom</th>
+                                    <th>Description</th>
+                                    <th>Prix</th>
+                                    <th>Image</th>
+                                    <th>Actions</th>
                                 </tr>
-                            @endforeach
+                            </thead>
+                            <tbody>
+                                @foreach ($plats as $plat)
+                                    <tr>
+                                        <td>
+                                            <span class="custom-checkbox">
+                                                <input type="checkbox" id="checkbox1" name="options[]" value="1">
+                                                <label for="checkbox1"></label>
+                                            </span>
+                                        </td>
+                                        <td>{{ $plat->nom }}</td>
+                                        <td>{{ $plat->description }}</td>
+                                        <td>{{ $plat->prix }}</td>
+                                        <td>{{ $plat->Image }}</td>
 
-                        </tbody>
-                    </table>
+                                        <td>
+                                            <form action="{{ route('plat.destroy',$plat->id) }}" method="Post">
+                                                <a class="btn btn-primary" href="{{ route('plat.edit',$plat->id) }}">
+                                                    <i class="fa-solid fa-pen"></i>
+                                                </a>
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">
+                                                    <i class="fa-solid fa-trash" style="color: red;"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+
+                                    </tr>
+                                @endforeach
+
+                            </tbody>
+                        </table>
+                    </div>
+
 
                 </div>
 

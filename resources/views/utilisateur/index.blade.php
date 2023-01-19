@@ -25,51 +25,53 @@
 
 
 
-                    <table class="table table-striped table-hover mt-5">
-                        <thead>
-                            <tr>
-                                <th>
-                                    <span class="custom-checkbox">
-                                        <input type="checkbox" id="selectAll">
-                                        <label for="selectAll"></label>
-                                    </span>
-                                </th>
-                                <th>Nom d'utilisateur</th>
-                                <th>Email</th>
-                                <th>Fonction</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($utilisateurs as $utilisateur)
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover mt-5 ">
+                            <thead>
                                 <tr>
-                                    <td>
+                                    <th>
                                         <span class="custom-checkbox">
-                                            <input type="checkbox" id="checkbox1" name="options[]" value="1">
-                                            <label for="checkbox1"></label>
+                                            <input type="checkbox" id="selectAll">
+                                            <label for="selectAll"></label>
                                         </span>
-                                    </td>
-                                    <td>{{ $utilisateur->username }}</td>
-                                    <td>{{ $utilisateur->email }}</td>
-                                    <td>{{ $utilisateur->fonction }}</td>
-
-                                    <td>
-                                        <form action="{{ route('utilisateur.destroy',$utilisateur->id) }}" method="Post">
-                                            <a class="btn btn-primary" href="{{ route('utilisateur.edit',$utilisateur->id) }}">
-                                                <i class="fa-solid fa-pen"></i>
-                                            </a>
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">
-                                                <i class="fa-solid fa-trash" style="color: red;"></i>
-                                            </button>
-                                        </form>
-                                    </td>
+                                    </th>
+                                    <th>Nom d'utilisateur</th>
+                                    <th>Email</th>
+                                    <th>Fonction</th>
+                                    <th>Actions</th>
                                 </tr>
-                            @endforeach
+                            </thead>
+                            <tbody>
+                                @foreach ($utilisateurs as $utilisateur)
+                                    <tr>
+                                        <td>
+                                            <span class="custom-checkbox">
+                                                <input type="checkbox" id="checkbox1" name="options[]" value="1">
+                                                <label for="checkbox1"></label>
+                                            </span>
+                                        </td>
+                                        <td>{{ $utilisateur->username }}</td>
+                                        <td>{{ $utilisateur->email }}</td>
+                                        <td>{{ $utilisateur->fonction }}</td>
 
-                        </tbody>
-                    </table>
+                                        <td>
+                                            <form action="{{ route('utilisateur.destroy',$utilisateur->id) }}" method="Post">
+                                                <a class="btn btn-primary" href="{{ route('utilisateur.edit',$utilisateur->id) }}">
+                                                    <i class="fa-solid fa-pen"></i>
+                                                </a>
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">
+                                                    <i class="fa-solid fa-trash" style="color: red;"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
 
 

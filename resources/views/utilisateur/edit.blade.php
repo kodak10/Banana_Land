@@ -56,10 +56,8 @@
 
                     <div class="col-md-12">
                         <label class="col-form-label text-md-end">{{ __("Fonction") }}</label>
-                        <select class="form-select" aria-label="" name="fonction" @error('fonction') is-invalid @enderror" name="fonction" value="{{ $utilisateur->fonction }}" required>
-                            <option value="Administrateur">Administrateur</option>
-                            <option value="Recouvreur">Recouvreur</option>
-                            <option value="Comptable">Comptable</option>
+                        <select class="form-select " aria-label="Disabled" name="fonction" @error('fonction') is-invalid @enderror" name="fonction"  Disabled>
+                                 <option value="{{$utilisateur->id}}">{{$utilisateur->fonction}}</option>
                         </select>
                         @error('fonction')
                             <span class="invalid-feedback" role="alert">

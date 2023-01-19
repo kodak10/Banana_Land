@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\vente;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-class VenteController extends Controller
+class ComptableController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,11 +13,7 @@ class VenteController extends Controller
      */
     public function index()
     {
-        $plat = DB::table('plats')->get();
-
-
-        $ventes = vente::orderBy('id','asc')->paginate(4);
-        return view('vente.index', compact('ventes','recouvreurs'));
+        return view('comptable.index');
     }
 
     /**
@@ -30,9 +23,7 @@ class VenteController extends Controller
      */
     public function create()
     {
-        $recouvreurs = user::select("id", "username")->get();
-
-        return view ('vente.create', compact('recouvreurs'));
+        //
     }
 
     /**
@@ -43,7 +34,7 @@ class VenteController extends Controller
      */
     public function store(Request $request)
     {
-        
+        //
     }
 
     /**

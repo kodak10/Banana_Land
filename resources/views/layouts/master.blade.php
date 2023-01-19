@@ -13,6 +13,7 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
+  <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
 
     <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -23,7 +24,6 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"/>
 
-  <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
 
 
     <!-- Scripts -->
@@ -46,15 +46,11 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Se connecter') }}</a>
                                 </li>
                             @endif
 
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
+
                         @else
                             <header id="header" class="header fixed-top d-flex align-items-center">
 
@@ -222,11 +218,6 @@
                                         </a>
                                       </li>
                                       <li>
-                                        <a href="/chariot">
-                                          <i class="fa-solid fa-circle"></i><span>Gestion des Chariots</span>
-                                        </a>
-                                      </li>
-                                      <li>
                                         <a href="/plat">
                                           <i class="fa-solid fa-circle"></i><span>Gestion des Plats</span>
                                         </a>
@@ -250,7 +241,7 @@
                                     </a>
                                     <ul id="comptable" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                                         <li>
-                                          <a href="#">
+                                          <a href="/consultation">
                                             <i class="fa-solid fa-circle"></i><span>Consultation</span>
                                           </a>
                                         </li>
@@ -310,10 +301,10 @@
 
         @endguest
     </div>
+    <script src="{{asset('assets/js/app.js')}}"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
-    <script src="{{asset('assets/js/app.js')}}"></script>
 
 </body>
 </html>

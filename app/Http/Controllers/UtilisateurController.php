@@ -78,6 +78,7 @@ class UtilisateurController extends Controller
     public function edit($id)
     {
         $utilisateur = User::findOrFail($id);
+
         return view('utilisateur.edit', compact('utilisateur'));
     }
 
@@ -93,14 +94,12 @@ class UtilisateurController extends Controller
         $request->validate([
             'username'  =>  'required',
             'email' =>  'required',
-            'fonction' => 'required',
             'password' => 'required',
         ]);
 
         $update_utilisateur = User::findOrFail($id);
         $update_utilisateur->username = $request->get('username');
         $update_utilisateur->email = $request->get('email');
-        $update_utilisateur->fonction = $request->get('fonction');
         $update_utilisateur->password = $request->get('password');
 
         $update_utilisateur->update();

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ChariotController;
+use App\Http\Controllers\ComptableController;
 use App\Http\Controllers\PlatController;
 use App\Http\Controllers\TransfertController;
 use App\Http\Controllers\UtilisateurController;
@@ -23,16 +24,16 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::resource('/utilisateur', UtilisateurController::class);
+Route::middleware('roleadmin')->group(function () {
+    Route::resource('/utilisateur', UtilisateurController::class);
+    Route::resource('/plat', PlatController::class);
+    Route::resource('/transfert', TransfertController::class);
+    Route::resource('/vente', VenteController::class);
+});
 
-Route::resource('/plat', PlatController::class);
-
-Route::resource('/transfert', TransfertController::class);
-
-Route::resource('/chariot', ChariotController::class);
-
-Route::resource('/vente', VenteController::class);
-
+Route::middleware('rolecomptable')->group(function () {
+    Route::resource('/comptable', ComptableController::class);
+});
 
 Auth::routes();
 
