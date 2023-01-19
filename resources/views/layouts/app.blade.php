@@ -16,23 +16,32 @@
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
 </head>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+
+                <div>
+                    <a href="/" class="logo d-flex align-items-center">
+                        <img src="assets/img/logo.png" alt="">
+                        <span class="d-none d-lg-block">Entreprise</span>
+                    </a>
+                    <i class="fa-solid fa-bars-staggered toggle-sidebar-btn"></i>
+                </div>
+
+
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-
+                        <div class="search-bar">
+                            <form class="search-form d-flex align-items-center" method="POST" action="#">
+                                <input type="text" name="query" placeholder="Rechercher" title="">
+                                <button type="submit" title="Rechercher"><i class="bi bi-search"></i></button>
+                            </form>
+                        </div><!-- Search Bar -->
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -58,8 +67,8 @@
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                    onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -78,5 +87,8 @@
             @yield('content')
         </main>
     </div>
+
+    <script src="{{asset('assets/js/app.js')}}"></script>
+
 </body>
 </html>

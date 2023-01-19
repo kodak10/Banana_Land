@@ -32,7 +32,7 @@ Route::middleware('roleadmin')->group(function () {
 });
 
 Route::middleware('rolecomptable')->group(function () {
-    Route::resource('/comptable', ComptableController::class);
+    Route::resource('/consultation', ComptableController::class);
 });
 
 Auth::routes();

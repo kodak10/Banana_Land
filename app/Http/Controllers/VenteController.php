@@ -20,7 +20,7 @@ class VenteController extends Controller
 
 
         $ventes = vente::orderBy('id','asc')->paginate(4);
-        return view('vente.index', compact('ventes','recouvreurs'));
+        return view('vente.index', compact('ventes','plat'));
     }
 
     /**
@@ -43,7 +43,7 @@ class VenteController extends Controller
      */
     public function store(Request $request)
     {
-        
+
     }
 
     /**

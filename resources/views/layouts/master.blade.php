@@ -13,7 +13,6 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
-  <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
 
     <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -23,6 +22,9 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"/>
+
+
+  <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
 
 
 
@@ -50,7 +52,6 @@
                                 </li>
                             @endif
 
-
                         @else
                             <header id="header" class="header fixed-top d-flex align-items-center">
 
@@ -70,127 +71,165 @@
                                 </div><!-- Search Bar -->
 
                                 <nav class="header-nav ms-auto">
-                                <ul class="d-flex align-items-center">
 
-                                    <li class="nav-item d-block d-lg-none">
-                                    <a class="nav-link nav-icon search-bar-toggle " href="#">
-                                        <i class="bi bi-search"></i>
-                                    </a>
-                                    </li><!-- Search Icon-->
+                                    <ul class="navbar-nav ms-auto">
+                                        <!-- Authentication Links -->
+                                        @guest
+                                            @if (Route::has('login'))
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                                </li>
+                                            @endif
 
-                                    <li class="nav-item dropdown">
+                                            @if (Route::has('register'))
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                                </li>
+                                            @endif
+                                        @else
+                                            <li class="nav-item dropdown">
+                                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                                    {{ Auth::user()->name }}
+                                                </a>
 
-                                    <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-                                        <i class="fa-solid fa-bell"></i>
-                                        <span class="badge bg-primary badge-number">4</span>
-                                    </a><!-- Notification Icon -->
+                                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                                       onclick="event.preventDefault();
+                                                                     document.getElementById('logout-form').submit();">
+                                                        {{ __('Logout') }}
+                                                    </a>
 
-                                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-                                        <li class="dropdown-header">
-                                        You have 4 new notifications
-                                        <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
-                                        </li>
-                                        <li>
-                                        <hr class="dropdown-divider">
-                                        </li>
+                                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                                        @csrf
+                                                    </form>
+                                                </div>
+                                            </li>
+                                        @endguest
+                                    </ul>
 
-                                        <li class="notification-item">
-                                        <i class="bi bi-exclamation-circle text-warning"></i>
-                                        <div>
-                                            <h4>Lorem Ipsum</h4>
-                                            <p>Quae dolorem earum veritatis oditseno</p>
-                                            <p>30 min. ago</p>
-                                        </div>
-                                        </li>
 
-                                        <li>
-                                        <hr class="dropdown-divider">
-                                        </li>
 
-                                        <li class="notification-item">
-                                        <i class="bi bi-x-circle text-danger"></i>
-                                        <div>
-                                            <h4>Atque rerum nesciunt</h4>
-                                            <p>Quae dolorem earum veritatis oditseno</p>
-                                            <p>1 hr. ago</p>
-                                        </div>
-                                        </li>
+                                    <ul class="d-flex align-items-center">
 
-                                        <li>
-                                        <hr class="dropdown-divider">
-                                        </li>
-
-                                        <li class="notification-item">
-                                        <i class="bi bi-check-circle text-success"></i>
-                                        <div>
-                                            <h4>Sit rerum fuga</h4>
-                                            <p>Quae dolorem earum veritatis oditseno</p>
-                                            <p>2 hrs. ago</p>
-                                        </div>
-                                        </li>
-
-                                        <li>
-                                        <hr class="dropdown-divider">
-                                        </li>
-                                        <li class="dropdown-footer">
-                                        <a href="#">Show all notifications</a>
-                                        </li>
-
-                                    </ul><!-- Notification Items -->
-
-                                    </li><!-- End Notification Nav -->
-
-                                    <li class="nav-item dropdown pe-3">
-
-                                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                                        <img src="assets/img/profile-img.jpg" alt="" class="rounded-circle">
-                                        <span class="d-none d-md-block dropdown-toggle ps-2">{{ Auth::user()->username }}</span>
-                                    </a><!-- End Profile Iamge Icon -->
-
-                                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-                                        <li class="dropdown-header">
-                                        <h6>{{ Auth::user()->username }}</h6>
-                                        <span>{{ Auth::user()->fonction }}</span>
-                                        </li>
-                                        <li>
-                                        <hr class="dropdown-divider">
-                                        </li>
-
-                                        <li>
-                                        <a class="dropdown-item d-flex align-items-center" href="#">
-                                            <i class="fa-solid fa-user"></i>
-                                            <span>Mon Profil</span>
+                                        <li class="nav-item d-block d-lg-none">
+                                        <a class="nav-link nav-icon search-bar-toggle " href="#">
+                                            <i class="bi bi-search"></i>
                                         </a>
-                                        </li>
-                                        <li>
-                                        <hr class="dropdown-divider">
-                                        </li>
-                                        <li>
+                                        </li><!-- Search Icon-->
 
-                                        <a class="dropdown-item d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre
-                                            onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
-                                             <i class="fa-solid fa-right-from-bracket"></i>
-                                            {{ __('Se Deconnecter') }}
-                                        </a>
+                                        <li class="nav-item dropdown">
 
-                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="{{ route('logout') }}"
-                                               onclick="event.preventDefault();
-                                                             document.getElementById('logout-form').submit();">
-                                                {{ __('Logout') }}
+                                        <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+                                            <i class="fa-solid fa-bell"></i>
+                                            <span class="badge bg-primary badge-number">4</span>
+                                        </a><!-- Notification Icon -->
+
+                                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+                                            <li class="dropdown-header">
+                                            You have 4 new notifications
+                                            <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+                                            </li>
+                                            <li>
+                                            <hr class="dropdown-divider">
+                                            </li>
+
+                                            <li class="notification-item">
+                                            <i class="bi bi-exclamation-circle text-warning"></i>
+                                            <div>
+                                                <h4>Lorem Ipsum</h4>
+                                                <p>Quae dolorem earum veritatis oditseno</p>
+                                                <p>30 min. ago</p>
+                                            </div>
+                                            </li>
+
+                                            <li>
+                                            <hr class="dropdown-divider">
+                                            </li>
+
+                                            <li class="notification-item">
+                                            <i class="bi bi-x-circle text-danger"></i>
+                                            <div>
+                                                <h4>Atque rerum nesciunt</h4>
+                                                <p>Quae dolorem earum veritatis oditseno</p>
+                                                <p>1 hr. ago</p>
+                                            </div>
+                                            </li>
+
+                                            <li>
+                                            <hr class="dropdown-divider">
+                                            </li>
+
+                                            <li class="notification-item">
+                                            <i class="bi bi-check-circle text-success"></i>
+                                            <div>
+                                                <h4>Sit rerum fuga</h4>
+                                                <p>Quae dolorem earum veritatis oditseno</p>
+                                                <p>2 hrs. ago</p>
+                                            </div>
+                                            </li>
+
+                                            <li>
+                                            <hr class="dropdown-divider">
+                                            </li>
+                                            <li class="dropdown-footer">
+                                            <a href="#">Show all notifications</a>
+                                            </li>
+
+                                        </ul><!-- Notification Items -->
+
+                                        </li><!-- End Notification Nav -->
+
+                                        <li class="nav-item dropdown pe-3">
+
+                                        <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                                            <img src="assets/img/profile-img.jpg" alt="" class="rounded-circle">
+                                            <span class="d-none d-md-block dropdown-toggle ps-2">{{ Auth::user()->username }}</span>
+                                        </a><!-- End Profile Iamge Icon -->
+
+                                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                                            <li class="dropdown-header">
+                                            <h6>{{ Auth::user()->username }}</h6>
+                                            <span>{{ Auth::user()->fonction }}</span>
+                                            </li>
+                                            <li>
+                                            <hr class="dropdown-divider">
+                                            </li>
+
+                                            <li>
+                                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                                <i class="fa-solid fa-user"></i>
+                                                <span>Mon Profil</span>
+                                            </a>
+                                            </li>
+                                            <li>
+                                            <hr class="dropdown-divider">
+                                            </li>
+                                            <li>
+
+                                            <a class="dropdown-item d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre
+                                                onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+                                                <i class="fa-solid fa-right-from-bracket"></i>
+                                                {{ __('Se Deconnecter') }}
                                             </a>
 
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                                @csrf
-                                            </form>
-                                        </div>
-                                        </li>
+                                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                                onclick="event.preventDefault();
+                                                                document.getElementById('logout-form').submit();">
+                                                    {{ __('Logout') }}
+                                                </a>
 
-                                    </ul><!-- End Profile Dropdown Items -->
-                                    </li><!-- End Profile Nav -->
+                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                                    @csrf
+                                                </form>
+                                            </div>
+                                            </li>
 
-                                </ul>
+                                        </ul><!-- End Profile Dropdown Items -->
+                                        </li><!-- End Profile Nav -->
+
+                                    </ul>
                                 </nav><!-- End Icons Navigation -->
 
                             </header><!-- End Header -->

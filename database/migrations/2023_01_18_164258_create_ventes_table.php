@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('ventes', function (Blueprint $table) {
             $table->id();
+            $table->string('nom');
+            $table->string('plat');
+            $table->string('qte');
             $table->timestamps();
         });
     }

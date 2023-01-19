@@ -155,7 +155,7 @@
       width: 13px;
       height: 13px;
       background: #fff;
-      position: absolute !important;
+      position: absolute;
       top: -7px;
       right: 20px;
       transform: rotate(45deg);
