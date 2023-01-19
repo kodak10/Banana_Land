@@ -6,7 +6,7 @@
       <h1>Dashboard</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Accueil</a></li>
+          <li class="breadcrumb-item"><a href="/home">Accueil</a></li>
           <li class="breadcrumb-item active">Utilisateur</li>
         </ol>
       </nav>
@@ -96,7 +96,7 @@
                 <div class="row mb-0 mt-3">
                     <div class="col-md-12">
                         <button type="submit" class="btn btn-success">
-                            {{ __('Enregistrer') }}
+                            {{ __('Mettre à jour') }}
                         </button>
                         <a  href="{{route('utilisateur.index')}}" class="btn btn-danger">
                             {{ __('Annuler') }}

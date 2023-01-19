@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class chariot extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'nom',
+        'cni',
+        'contact',
+    ];
 }

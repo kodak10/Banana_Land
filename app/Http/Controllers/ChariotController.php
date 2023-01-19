@@ -36,7 +36,19 @@ class ChariotController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nom'  =>  'required|unique:chariots',
+            'cni' =>  'required|max:30',
+            'contact' => 'required|min:10|integer',
+        ]);
+
+        return chariot::create([
+            'nom' => $request['nom'],
+            'cni' => $request['cni'],
+            'contact' =>$request['contact'],
+        ]);
+
+        return redirect('/chariot.index')->with('success', 'Personnage Ajouter avec succès');
     }
 
     /**
@@ -58,7 +70,8 @@ class ChariotController extends Controller
      */
     public function edit($id)
     {
-        //
+        $chariot = chariot::findOrFail($id);
+        return view('chariot.edit', compact('chariot'));
     }
 
     /**
@@ -70,7 +83,20 @@ class ChariotController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nom'  =>  'required|unique:plats',
+            'cni' =>  'required|max:255',
+            'contact' => 'required',
+        ]);
+
+        $update_chariot = chariot::findOrFail($id);
+        $update_chariot->nom = $request->get('nom');
+        $update_chariot->cni = $request->get('cni');
+        $update_chariot->contact = $request->get('contact');
+
+        $update_chariot->update();
+
+        return redirect('/chariot')->with('success', 'Chariot Modifié avec succès');
     }
 
     /**
@@ -81,6 +107,9 @@ class ChariotController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $chariot = chariot::findOrFail($id);
+        $chariot->delete();
+
+        return redirect('/chariot')->with('success', 'Chariot Supprimer avec succès');
     }
 }

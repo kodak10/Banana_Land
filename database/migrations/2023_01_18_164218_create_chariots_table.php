@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('chariots', function (Blueprint $table) {
             $table->id();
+            $table->string('nom');
+            $table->string('cni')->unique;
+            $table->integer('contact');
             $table->timestamps();
         });
     }

@@ -24,7 +24,7 @@
                 </div>
             @endif
 
-            <form method="POST" action="{{ route('plat.store') }}" enctype="multipart/form-data" >
+            <form method="POST" action="{{ route('utilisateur.store') }}" enctype="multipart/form-data" >
 
 
                 @csrf

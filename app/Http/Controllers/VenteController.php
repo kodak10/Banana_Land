@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\vente;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class VenteController extends Controller
 {
@@ -14,6 +15,10 @@ class VenteController extends Controller
      */
     public function index()
     {
+        $utilisateur = DB::table('users')->get();
+        $plat = DB::table('plats')->get();
+
+
         $ventes = vente::orderBy('id','asc')->paginate(4);
         return view('vente.index', compact('ventes'));
     }

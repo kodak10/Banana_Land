@@ -37,7 +37,7 @@ class PlatController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nom'  =>  'required',
+            'nom'  =>  'required|unique:plats',
             'description' =>  'required|max:255',
             'images' => 'required|file:jpg,png,svg',
             'prix' => 'required|integer',
@@ -73,7 +73,8 @@ class PlatController extends Controller
      */
     public function edit($id)
     {
-        //
+        $plat = plat::findOrFail($id);
+        return view('plat.edit', compact('plat'));
     }
 
     /**
@@ -85,7 +86,22 @@ class PlatController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nom'  =>  'required',
+            'description' =>  'required|max:255',
+            'images' => 'required|file:jpg,png,svg',
+            'prix' => 'required|integer',
+        ]);
+
+        $update_plat = plat::findOrFail($id);
+        $update_plat->nom = $request->get('nom');
+        $update_plat->description = $request->get('description');
+        $update_plat->images = $request->get('images');
+        $update_plat->prix = $request->get('prix');
+
+        $update_plat->update();
+
+        return redirect('/utilisateur')->with('success', 'Plat Modifié avec succès');
     }
 
     /**
@@ -96,6 +112,9 @@ class PlatController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $plat = plat::findOrFail($id);
+        $plat->delete();
+
+        return redirect('/plat')->with('success', 'Plat Supprimer avec succès');
     }
 }

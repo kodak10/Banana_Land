@@ -7,7 +7,7 @@
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="/home">Accueil</a></li>
-          <li class="breadcrumb-item active">Utilisateur</li>
+          <li class="breadcrumb-item active">Plats</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -16,7 +16,7 @@
         <div class="container p-3">
 
             <div class="section-header">
-                <h4 class="section-title">Ajouter un Utilisateur</h4>
+                <h4 class="section-title">Ajouter un Plats</h4>
             </div>
             @if ($message = Session::get('success'))
                 <div class="alert alert-success">
@@ -39,20 +39,6 @@
                             </span>
                         @enderror
                     </div>
-                    <div class="col-md-6">
-                        <label class="col-form-label text-md-end">{{ __("Description") }}</label>
-                        <textarea type="text" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description') }}" required autocomplete="description"rows="3"></textarea>
-                        @error('description')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-
-
-                </div>
-
-                <div class="row mb-3">
 
                     <div class="col-md-6">
                         <label class="col-form-label text-md-end">{{ __("Images") }}</label>
@@ -62,6 +48,23 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
+                    </div>
+
+
+
+                </div>
+
+
+                <div class="row mb-3">
+
+                    <div class="col-md-6">
+                        <label class="col-form-label text-md-end">{{ __("Quantité") }}</label>
+                        {{-- <input type="text" name="quantite" class="form-control @error('quantite') is-invalid @enderror"  value="{{ old('quantite') }}" required autocomplete="quantite">
+                        @error('quantite')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror --}}
                     </div>
                     <div class="col-md-6">
                         <label class="col-form-label text-md-end">{{ __("Prix") }}</label>
@@ -74,11 +77,26 @@
                     </div>
                 </div>
 
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <label class="col-form-label text-md-end">{{ __("Description") }}</label>
+                        <textarea type="text" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description') }}" required autocomplete="description"rows="3"></textarea>
+                        @error('description')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+
                 <div class="row mb-0 mt-3">
                     <div class="col-md-12">
                         <button type="submit" class="btn btn-primary">
                             {{ __('Enregistrer') }}
                         </button>
+                        <a  href="{{route('plat.index')}}" class="btn btn-danger">
+                            {{ __('Retour') }}
+                        </a>
                     </div>
                 </div>
 
