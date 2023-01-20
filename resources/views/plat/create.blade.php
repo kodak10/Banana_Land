@@ -31,6 +31,21 @@
                 <div class="row mb-3">
 
                     <div class="col-md-6">
+                        <label class="col-form-label text-md-end">{{ __("Catégorie du Plat") }}</label>
+                        <select class="form-select" aria-label="" name="disponible" @error('disponible') is-invalid @enderror" name="disponible" value="{{ old('disponible') }}" required>
+                            @foreach ($categorieplat->plat as $categorie_plat )
+                                <option value="{{$categorie_plat->nom}}" >{{$categorie_plat->nom}}</option>
+                            @endforeach
+                         </select>
+                        @error('disponible')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+
+                    <div class="col-md-6">
                         <label class="col-form-label text-md-end">{{ __("Nom du plat") }}</label>
                         <input type="text" name="nom" class="form-control @error('nom') is-invalid @enderror"  value="{{ old('nom') }}" required autocomplete="nom">
                         @error('nom')
@@ -49,23 +64,24 @@
                             </span>
                         @enderror
                     </div>
-
-
-
                 </div>
-
 
                 <div class="row mb-3">
 
+
                     <div class="col-md-6">
-                        <label class="col-form-label text-md-end">{{ __("Quantité") }}</label>
-                        {{-- <input type="text" name="quantite" class="form-control @error('quantite') is-invalid @enderror"  value="{{ old('quantite') }}" required autocomplete="quantite">
-                        @error('quantite')
+                        <label class="col-form-label text-md-end">{{ __("Disponible") }}</label>
+                        <select class="form-select" aria-label="" name="disponible" @error('disponible') is-invalid @enderror" name="disponible" value="{{ old('disponible') }}" required>
+                                <option value="Oui" >Oui</option>
+                                <option value="Non" >Non</option>
+                         </select>
+                        @error('disponible')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
-                        @enderror --}}
+                        @enderror
                     </div>
+
                     <div class="col-md-6">
                         <label class="col-form-label text-md-end">{{ __("Prix") }}</label>
                         <input type="text" name="prix" class="form-control @error('prix') is-invalid @enderror"  value="{{ old('prix') }}" required autocomplete="prix">
@@ -87,6 +103,7 @@
                             </span>
                         @enderror
                     </div>
+
                 </div>
 
                 <div class="row mb-0 mt-3">

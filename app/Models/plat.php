@@ -14,5 +14,14 @@ class plat extends Model
         'description',
         'prix',
         'images',
+        'disponible',
     ];
+
+    public function categorieplat()
+    {
+        return $this->belongsTo(Categorie::class);
+    }
+
+
 }
+

@@ -26,7 +26,6 @@
 
             <form method="POST" action="{{ route('vente.store') }}" enctype="multipart/form-data" >
 
-
                 @csrf
                 <div class="row mb-3">
 

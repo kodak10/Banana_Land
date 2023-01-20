@@ -41,7 +41,7 @@ class UtilisateurController extends Controller
             'username'  =>  'required',
             'email' =>  'required|email|unique:users',
             'fonction' => 'required',
-            'password' => 'required',
+            'password' => 'required|confirmed',
         ]);
 
 
@@ -94,7 +94,7 @@ class UtilisateurController extends Controller
         $request->validate([
             'username'  =>  'required',
             'email' =>  'required',
-            'password' => 'required',
+            'password' => 'required|confirmed',
         ]);
 
         $update_utilisateur = User::findOrFail($id);

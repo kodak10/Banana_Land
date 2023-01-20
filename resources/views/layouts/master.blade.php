@@ -217,6 +217,12 @@
                                           <i class="fa-solid fa-circle"></i><span>Gestion des Utilisateurs</span>
                                         </a>
                                       </li>
+
+                                      <li>
+                                        <a href="/categorie">
+                                            <i class="fa-solid fa-circle"></i><span>Gestion des Catégories</span>
+                                          </a>
+                                      </li>
                                       <li>
                                         <a href="/plat">
                                           <i class="fa-solid fa-circle"></i><span>Gestion des Plats</span>

@@ -41,6 +41,8 @@ class PlatController extends Controller
             'description' =>  'required|max:255',
             'images' => 'required|file:jpg,png,svg',
             'prix' => 'required|integer',
+            'disponible' => 'required',
+
         ]);
 
         return plat::create([
@@ -48,9 +50,10 @@ class PlatController extends Controller
             'description' => $request['description'],
             'images' =>$request['images'],
             'prix' =>$request['prix'],
+            'disponible' =>$request['disponible'],
         ]);
 
-        return redirect('/plat.index')->with('success', 'Personnage Ajouter avec succès');
+        return redirect(route('plat.create'))->with('success', 'Personnage Ajouter avec succès');
 
     }
 
@@ -91,6 +94,8 @@ class PlatController extends Controller
             'description' =>  'required|max:255',
             'images' => 'required|file:jpg,png,svg',
             'prix' => 'required|integer',
+            'disponible' => 'required|boolean',
+
         ]);
 
         $update_plat = plat::findOrFail($id);
@@ -98,6 +103,7 @@ class PlatController extends Controller
         $update_plat->description = $request->get('description');
         $update_plat->images = $request->get('images');
         $update_plat->prix = $request->get('prix');
+        $update_plat->disponible =  $request->get('disponible');
 
         $update_plat->update();
 
