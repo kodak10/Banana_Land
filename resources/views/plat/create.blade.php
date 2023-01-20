@@ -10,7 +10,7 @@
           <li class="breadcrumb-item active">Plats</li>
         </ol>
       </nav>
-    </div><!-- End Page Title -->
+    </div>
 
     <section class="section dashboard">
         <div class="container p-3">
@@ -33,9 +33,12 @@
                     <div class="col-md-6">
                         <label class="col-form-label text-md-end">{{ __("Catégorie du Plat") }}</label>
                         <select class="form-select" aria-label="" name="disponible" @error('disponible') is-invalid @enderror" name="disponible" value="{{ old('disponible') }}" required>
-                            @foreach ($categorieplat->plat as $categorie_plat )
-                                <option value="{{$categorie_plat->nom}}" >{{$categorie_plat->nom}}</option>
+                            @foreach ($plats as $plat )
+                                @foreach ($plat->categorieplat as $cat_plat )
+                                    <option value="{{$cat_plat->nom}}">{{$cat_plat->nom}}</option>
+                                @endforeach
                             @endforeach
+
                          </select>
                         @error('disponible')
                             <span class="invalid-feedback" role="alert">
@@ -121,5 +124,5 @@
         </div>
     </section>
 
-</main><!-- End #main -->
+</main>
 @endsection

@@ -41,10 +41,13 @@ class CategorieController extends Controller
             'image' => 'required|file:jpg,png,svg',
         ]);
 
-        return Categorie::create([
+        Categorie::create([
             'nom' => $request['nom'],
             'image' =>$request['image'],
         ]);
+
+        return redirect(route('categorie.create'))->with('success', 'Plat Ajouter avec succès');
+
     }
 
     /**
@@ -90,7 +93,7 @@ class CategorieController extends Controller
 
         $update_categorie_plat->update();
 
-        return redirect('/categorie.index')->with('success', 'Plat Modifié avec succès');
+        return redirect(route('categorie.index'))->with('success', 'Plat Modifié avec succès');
 
     }
 
@@ -105,6 +108,6 @@ class CategorieController extends Controller
         $categorie_plat = Categorie::findOrFail($id);
         $categorie_plat->delete();
 
-        return redirect('/categorie.index')->with('success', 'Plat Supprimer avec succès');
+        return redirect(route('categorie.index'))->with('success', 'Plat Supprimer avec succès');
     }
 }

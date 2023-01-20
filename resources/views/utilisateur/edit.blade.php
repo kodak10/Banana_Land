@@ -3,14 +3,13 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Dashboard</h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="/home">Accueil</a></li>
-          <li class="breadcrumb-item active">Utilisateur</li>
-        </ol>
-      </nav>
-    </div><!-- End Page Title -->
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/home">Accueil</a></li>
+                <li class="breadcrumb-item active">Utilisateur</li>
+            </ol>
+        </nav>
+    </div>
 
     <section class="section dashboard">
         <div class="container p-3">
@@ -32,7 +31,7 @@
 
                     <div class="col-md-6">
                         <label class="col-form-label text-md-end">{{ __("Nom d'utilisateur") }}</label>
-                        <input type="text" name="username" class="form-control @error('username') is-invalid @enderror"  value="{{ $utilisateur->username }}" required autocomplete="username">
+                        <input type="text" name="username" class="form-control @error('username') is-invalid @enderror"  value="{{ $utilisateur->username }}" required>
                         @error('username')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -41,7 +40,7 @@
                     </div>
                     <div class="col-md-6">
                         <label class="col-form-label text-md-end">{{ __("Email") }}</label>
-                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $utilisateur->email }}" required autocomplete="email">
+                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $utilisateur->email }}" required>
                         @error('email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -106,5 +105,5 @@
         </div>
     </section>
 
-</main><!-- End #main -->
+</main>
 @endsection

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categorie;
 use App\Models\plat;
 use Illuminate\Http\Request;
 
@@ -13,9 +14,12 @@ class PlatController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
+
     {
-        $plats = plat::orderBy('id','asc')->paginate(4);
-        return view('plat.index', compact('plats'));
+        $categorieplats = Categorie::orderBy('id', 'asc')->get();
+
+        $plats = plat::orderBy('id','asc')->get();
+        return view('plat.index', compact('plats', 'categorieplats'));
     }
 
     /**
@@ -25,7 +29,11 @@ class PlatController extends Controller
      */
     public function create()
     {
-        return view ('plat.create');
+
+        $categorieplats = Categorie::orderBy('id', 'asc')->get();
+
+        $plats = plat::orderBy('id','asc')->paginate(4);
+        return view ('plat.create', compact('categorieplats','plats'));
     }
 
     /**
@@ -45,7 +53,7 @@ class PlatController extends Controller
 
         ]);
 
-        return plat::create([
+        plat::create([
             'nom' => $request['nom'],
             'description' => $request['description'],
             'images' =>$request['images'],
@@ -53,7 +61,8 @@ class PlatController extends Controller
             'disponible' =>$request['disponible'],
         ]);
 
-        return redirect(route('plat.create'))->with('success', 'Personnage Ajouter avec succès');
+
+        return redirect(route('plat.create'))->with('success', 'Plat Ajouter avec succès');
 
     }
 
@@ -107,7 +116,7 @@ class PlatController extends Controller
 
         $update_plat->update();
 
-        return redirect('/utilisateur')->with('success', 'Plat Modifié avec succès');
+        return redirect(route('plat.index'))->with('success', 'Plat modifier avec succès');
     }
 
     /**
@@ -121,6 +130,6 @@ class PlatController extends Controller
         $plat = plat::findOrFail($id);
         $plat->delete();
 
-        return redirect('/plat')->with('success', 'Plat Supprimer avec succès');
+        return redirect(route('plat.create'))->with('success', 'Plat supprimer avec succès');
     }
 }

@@ -44,16 +44,14 @@ class UtilisateurController extends Controller
             'password' => 'required|confirmed',
         ]);
 
-
-
-        return User::create([
+        User::create([
             'username' => $request['username'],
             'email' => $request['email'],
             'fonction' =>$request['fonction'],
             'password' => Hash::make($request['password']),
         ]);
 
-        return redirect('/utilisateur.index')->with('success', 'Personnage Ajouter avec succès');
+        return redirect(route('utilisateur.create'))->with('success', 'Utilisateur Ajouter avec succès');
 
 
     }
@@ -104,7 +102,7 @@ class UtilisateurController extends Controller
 
         $update_utilisateur->update();
 
-        return redirect('/utilisateur')->with('success', 'Personnage Modifié avec succès');
+        return redirect(route('utilisateur.index'))->with('success', 'Utilisateur modifié avec succès');
 
     }
 
@@ -119,30 +117,30 @@ class UtilisateurController extends Controller
         $utilisateur = User::findOrFail($id);
         $utilisateur->delete();
 
-        return redirect('/utilisateur')->with('success', 'Personnage Modifié avec succès');
+        return redirect(route('utilisateur.index'))->with('success', 'Utilisateur Supprimer avec succès');
     }
 
 
     public function updatePassword(Request $request)
-{
-        # Validation
-        $request->validate([
-            'old_password' => 'required',
-            'new_password' => 'required|confirmed',
-        ]);
+    {
+            # Validation
+            $request->validate([
+                'old_password' => 'required',
+                'new_password' => 'required|confirmed',
+            ]);
 
 
-        #Match The Old Password
-        if(!Hash::check($request->old_password, auth()->user()->password)){
-            return back()->with("error", "Old Password Doesn't match!");
-        }
+            #Match The Old Password
+            if(!Hash::check($request->old_password, auth()->user()->password)){
+                return back()->with("error", "Old Password Doesn't match!");
+            }
 
 
-        #Update the new Password
-        User::whereId(auth()->user()->id)->update([
-            'password' => Hash::make($request->new_password)
-        ]);
+            #Update the new Password
+            User::whereId(auth()->user()->id)->update([
+                'password' => Hash::make($request->new_password)
+            ]);
 
-        return back()->with("status", "Password changed successfully!");
-}
+            return back()->with("status", "Password changed successfully!");
+    }
 }

@@ -3,14 +3,13 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Dashboard</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="/home">Accueil</a></li>
           <li class="breadcrumb-item active">Categories</li>
         </ol>
       </nav>
-    </div><!-- End Page Title -->
+    </div>
 
     <section class="section dashboard">
         <div class="container p-3">
@@ -32,7 +31,7 @@
 
                     <div class="col-md-6">
                         <label class="col-form-label text-md-end">{{ __("Nom du plat") }}</label>
-                        <input type="text" name="nom" class="form-control @error('nom') is-invalid @enderror"  value="{{ old('nom') }}" required autocomplete="nom">
+                        <input type="text" name="nom" class="form-control @error('nom') is-invalid @enderror"  value="{{ old('nom') }}" required>
                         @error('nom')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -41,7 +40,7 @@
                     </div>
                     <div class="col-md-6">
                         <label class="col-form-label text-md-end">{{ __("Image") }}</label>
-                        <input type="file" name="image" class="form-control @error('image') is-invalid @enderror"  value="{{ old('image') }}" required autocomplete="image">
+                        <input type="file" name="image" class="form-control @error('image') is-invalid @enderror"  value="{{ old('image') }}" required>
                         @error('image')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -65,5 +64,5 @@
         </div>
     </section>
 
-</main><!-- End #main -->
+</main>
 @endsection

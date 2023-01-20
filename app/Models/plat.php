@@ -15,6 +15,7 @@ class plat extends Model
         'prix',
         'images',
         'disponible',
+        'categories_id',
     ];
 
     public function categorieplat()

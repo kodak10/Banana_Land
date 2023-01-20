@@ -10,7 +10,7 @@
           <li class="breadcrumb-item active">Plats</li>
         </ol>
       </nav>
-    </div><!-- End Page Title -->
+    </div>
 
     <section class="section dashboard">
         <div class="container p-3">
@@ -108,5 +108,5 @@
         </div>
     </section>
 
-</main><!-- End #main -->
+</main>
 @endsection
