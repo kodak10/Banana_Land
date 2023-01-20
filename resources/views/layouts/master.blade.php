@@ -76,7 +76,7 @@
 
                                                 <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
                                                     <i class="fa-solid fa-bell"></i>
-                                                    <span class="badge bg-primary badge-number">4</span>
+                                                    <span class="badge bg-primary badge-number"></span>
                                                 </a>
 
                                                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
@@ -265,7 +265,7 @@
         @endguest
     </div>
 
-    
+
     <script src="{{asset('assets/js/app.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
