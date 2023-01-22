@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\plat;
 use App\Models\vente;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -16,11 +17,11 @@ class VenteController extends Controller
      */
     public function index()
     {
-        $plat = DB::table('plats')->get();
 
-
+        $plats = plat::where('disponible','=','Oui')->orderby('nom','asc')->get();
         $ventes = vente::orderBy('id','asc')->paginate(4);
-        return view('vente.index', compact('ventes','plat'));
+
+        return view('vente.index', compact('ventes','plats'));
     }
 
     /**

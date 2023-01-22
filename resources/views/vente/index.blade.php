@@ -34,14 +34,14 @@
                                             <label for="selectAll"></label>
                                         </span>
                                     </th>
-                                    <th>Nom du Recouvreur</th>
                                     <th>Nom du plat</th>
-                                    <th>Quantité</th>
+                                    <th>Description</th>
+                                    <th>Prix</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($ventes as $vente)
+                                @foreach ($plats as $plat)
                                     <tr>
                                         <td>
                                             <span class="custom-checkbox">
@@ -49,22 +49,17 @@
                                                 <label for="checkbox1"></label>
                                             </span>
                                         </td>
-                                        <td>{{ $vente->username }}</td>
-                                        <td>{{ $vente->plat }}</td>
-                                        <td>{{ $vente->qte }}</td>
-
-                                        <td>
-                                            <form action="{{ route('vente.destroy',$vente->id) }}" method="Post">
-                                                <a class="btn btn-primary" href="{{ route('vente.edit',$vente->id) }}">
-                                                    <i class="fa-solid fa-pen"></i>
-                                                </a>
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">
-                                                    <i class="fa-solid fa-trash" style="color: red;"></i>
+                                        <form method="POST" action="{{ route('panier.store') }}" enctype="multipart/form-data" >
+                                            @csrf
+                                            <td name="nom">{{ $plat->nom }}</td>
+                                            <td name="description">{{ $plat->description }}</td>
+                                            <td name="prix">{{ $plat->prix }}</td>
+                                            <td>
+                                                <button type="submit" class="btn btn-primary">
+                                                    {{ __('Enregistrer') }}
                                                 </button>
-                                            </form>
-                                        </td>
+                                            </td>
+                                        </form>
                                     </tr>
                                 @endforeach
 

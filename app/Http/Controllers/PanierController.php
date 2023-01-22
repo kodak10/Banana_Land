@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\plat;
+use App\Models\Panier;
 use Illuminate\Http\Request;
 
 class PanierController extends Controller
@@ -13,7 +15,9 @@ class PanierController extends Controller
      */
     public function index()
     {
-        return view('panier.index');
+        $paniers = Panier::orderBy('created_at','asc')->get();
+
+        return view('panier.index', compact('paniers'));
     }
 
     /**
@@ -34,7 +38,20 @@ class PanierController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nom' => 'required',
+            'description'  =>  'required',
+            //'image' =>  'required|jpg,png',
+            'prix' => 'integer',
+        ]);
+
+        Panier::create([
+            'nom' => $request['nom'],
+            'description' => $request['description'],
+            'prix' => $request['prix'],
+        ]);
+        return redirect(route('panier.index'))->with('success', 'Ajouté au panier');
+
     }
 
     /**

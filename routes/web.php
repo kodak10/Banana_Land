@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\ComptableController;
+use App\Http\Controllers\PanierController;
 use App\Http\Controllers\PlatController;
 use App\Http\Controllers\TransfertController;
 use App\Http\Controllers\UtilisateurController;
@@ -32,8 +33,9 @@ Route::middleware('roleadmin')->group(function () {
     Route::resource('/utilisateur', UtilisateurController::class);
     Route::resource('/categorie', CategorieController::class);
     Route::resource('/plat', PlatController::class);
-    Route::resource('/transfert', TransfertController::class);
     Route::resource('/vente', VenteController::class);
+    Route::resource('/panier', PanierController::class);
+    Route::resource('/transfert', TransfertController::class);
 });
 
 Route::middleware('rolecomptable')->group(function () {
