@@ -46,7 +46,7 @@ class CategorieController extends Controller
             'image' =>$request['image'],
         ]);
 
-        return redirect(route('categorie.create'))->with('success', 'Plat Ajouter avec succès');
+        return redirect(route('categorie.create'))->with('success', 'Catégorie de plat ajouter avec succès');
 
     }
 
@@ -93,7 +93,7 @@ class CategorieController extends Controller
 
         $update_categorie_plat->update();
 
-        return redirect(route('categorie.index'))->with('success', 'Plat Modifié avec succès');
+        return redirect(route('categorie.index'))->with('success', 'Catégorie de plat modifié avec succès');
 
     }
 
@@ -108,6 +108,6 @@ class CategorieController extends Controller
         $categorie_plat = Categorie::findOrFail($id);
         $categorie_plat->delete();
 
-        return redirect(route('categorie.index'))->with('success', 'Plat Supprimer avec succès');
+        return redirect(route('categorie.index'))->with('success', 'Catégorie de plat supprimer avec succès');
     }
 }

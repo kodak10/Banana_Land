@@ -14,11 +14,10 @@ class PlatController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-
     {
         $categorieplats = Categorie::orderBy('id', 'asc')->get();
-
         $plats = plat::orderBy('id','asc')->get();
+
         return view('plat.index', compact('plats', 'categorieplats'));
     }
 
@@ -29,11 +28,10 @@ class PlatController extends Controller
      */
     public function create()
     {
-
-        $categorieplats = Categorie::orderBy('id', 'asc')->get();
-
+        $categories = Categorie::orderBy('id', 'asc')->get();
         $plats = plat::orderBy('id','asc')->paginate(4);
-        return view ('plat.create', compact('categorieplats','plats'));
+
+        return view ('plat.create', compact('categories','plats'));
     }
 
     /**
@@ -45,6 +43,7 @@ class PlatController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'categories_id' => 'required|max:3',
             'nom'  =>  'required|unique:plats',
             'description' =>  'required|max:255',
             'images' => 'required|file:jpg,png,svg',
@@ -53,17 +52,27 @@ class PlatController extends Controller
 
         ]);
 
-        plat::create([
+        $categories_plat = categorie::findOrfail($request['categories_id']);
+
+        $image = $request->file('images');
+
+        $imageName = time().'.'.$image->extension();
+        $image->move(public_path('images'),$imageName);
+        
+   
+        // return response()->json(['success'=>$imageName]);
+
+
+        $plat = $categories_plat->plats()->create([
             'nom' => $request['nom'],
             'description' => $request['description'],
-            'images' =>$request['images'],
-            'prix' =>$request['prix'],
-            'disponible' =>$request['disponible'],
+            'prix' => $request['prix'],
+            'images' => $request['images'],
+            'disponible' => $request['disponible'],
+            'categorie_id' => $request['categories_id'],
         ]);
-
-
-        return redirect(route('plat.create'))->with('success', 'Plat Ajouter avec succès');
-
+        
+        return redirect(route('plat.create'))->with('success', 'Plat ajouter avec succès');
     }
 
     /**
@@ -85,8 +94,7 @@ class PlatController extends Controller
      */
     public function edit($id)
     {
-        $plat = plat::findOrFail($id);
-        return view('plat.edit', compact('plat'));
+        return view('plat.edit');
     }
 
     /**

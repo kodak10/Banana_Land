@@ -32,15 +32,13 @@
 
                     <div class="col-md-6">
                         <label class="col-form-label text-md-end">{{ __("Catégorie du Plat") }}</label>
-                        <select class="form-select" aria-label="" name="disponible" @error('disponible') is-invalid @enderror" name="disponible" value="{{ old('disponible') }}" required>
-                            @foreach ($plats as $plat )
-                                @foreach ($plat->categorieplat as $cat_plat )
-                                    <option value="{{$cat_plat->nom}}">{{$cat_plat->nom}}</option>
-                                @endforeach
+                        <select class="form-select" aria-label="" name="categories_id" @error('categories_id') is-invalid @enderror" value="{{ old('categories_id') }}" required>
+                            @foreach ($categories as $categorie )
+                                <option value="{{$categorie->id}}">{{$categorie->nom}}</option>
                             @endforeach
 
                          </select>
-                        @error('disponible')
+                        @error('categories_id')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -70,7 +68,6 @@
                 </div>
 
                 <div class="row mb-3">
-
 
                     <div class="col-md-6">
                         <label class="col-form-label text-md-end">{{ __("Disponible") }}</label>

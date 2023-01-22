@@ -14,7 +14,7 @@ class Categorie extends Model
         'image'
     ];
 
-    public function plat()
+    public function plats()
     {
         return $this->hasMany(Plat::class, 'categories_id' ,'id');
 
