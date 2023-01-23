@@ -58,7 +58,7 @@
                                                         </span>
                                                     </td>
                                                     <td class="hidden text-right md:table-cell">
-                                                        
+
                                                         <form action="{{ route('panier.destroy',$panier->id) }}" method="Post">
                                                             @csrf
                                                             @method('DELETE')
@@ -72,7 +72,7 @@
                                         </tbody>
                                 </table>
 
-                                <form action="{{ route('panier.store') }}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ route('vente.store') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <input type="hidden" value="{{ $panier->id }}" name="id">
                                     <input type="hidden" value="{{ $panier->images }}" name="images">
@@ -80,7 +80,7 @@
                                     <input type="hidden" value="{{ $panier->description }}" name="description">
                                     <input type="hidden" value="{{ $panier->prix }}"  name="prix">
                                     <input type="hidden" value="1" name="quantity">
-                                    <button class="btn btn-primary p-1 w-100 fw-bold">Ajouter</button>
+                                    <button class="btn btn-primary p-1 w-100 fw-bold">Valider la Commande</button>
                                 </form>
                             </div>
 

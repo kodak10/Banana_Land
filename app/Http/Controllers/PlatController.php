@@ -16,7 +16,7 @@ class PlatController extends Controller
     public function index()
     {
         $categorieplats = Categorie::orderBy('id', 'asc')->get();
-        $plats = plat::orderBy('id','asc')->get();
+        $plats = plat::where('disponible','=','Oui')->orderBy('id','asc')->get();
 
         return view('plat.index', compact('plats', 'categorieplats'));
     }
@@ -58,8 +58,8 @@ class PlatController extends Controller
 
         $imageName = time().'.'.$image->extension();
         $image->move(public_path('images'),$imageName);
-        
-   
+
+
         // return response()->json(['success'=>$imageName]);
 
 
@@ -71,7 +71,7 @@ class PlatController extends Controller
             'disponible' => $request['disponible'],
             'categorie_id' => $request['categories_id'],
         ]);
-        
+
         return redirect(route('plat.create'))->with('success', 'Plat ajouter avec succès');
     }
 

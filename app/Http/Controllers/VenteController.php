@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Panier;
 use App\Models\plat;
 use App\Models\vente;
 use App\Models\User;
@@ -42,7 +43,14 @@ class VenteController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'nom' => 'required',
+        ]);
 
+        vente::create([
+            'id' => $request['id'],
+        ]);
+        return redirect(route('vente.index'))->with('success', 'Votre commande à été valider avec succes');
     }
 
     /**
