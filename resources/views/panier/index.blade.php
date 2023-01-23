@@ -1,26 +1,85 @@
 @extends('layouts.master')
 @section('content')
-    <div class="container">
-        @foreach ($paniers as $panier)
-        <tr>
-            <td>
-                <span class="custom-checkbox">
-                    <input type="checkbox" id="checkbox1" name="options[]" value="1">
-                    <label for="checkbox1"></label>
-                </span>
-            </td>
-            <form method="POST" action="{{ route('panier.store') }}" enctype="multipart/form-data" >
-                @csrf
-                <td name="nom">{{ $panier->nom }}</td>
-                <td name="description">{{ $panier->description }}</td>
-                <td name="prix">{{ $panier->prix }}</td>
-                <td>
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fa-solid fa-plus"></i>
-                    </button>
-                </td>
-            </form>
-        </tr>
-    @endforeach
-    </div>
+
+    <main id="main" class="main">
+
+        <div class="pagetitle">
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/home">Accueil</a></li>
+                    <li class="breadcrumb-item active">Panier</li>
+                </ol>
+            </nav>
+        </div>
+
+        <section class="section dashboard">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="shadow-sm p-5 mb-5 bg-body-tertiary rounded">
+                            <div class="row">
+                                    <table class="w-full text-sm lg:text-base" cellspacing="0">
+                                        <thead>
+                                        <tr class="h-12 uppercase">
+                                            <th class="hidden md:table-cell"></th>
+                                            <th class="text-left">Nom du Plat</th>
+                                            <th class="pl-5 text-left lg:text-right lg:pl-0">
+                                            <span class="md:hidden" title="Quantity">Qte</span>
+                                            <span class="hidden lg:inline">Quantité</span>
+                                            </th>
+                                            <th class="hidden text-right md:table-cell"> Prix</th>
+                                            <th class="hidden text-right md:table-cell"> Action </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($paniers as $panier)
+                                                <tr>
+                                                    <td class="hidden pb-4 md:table-cell">
+                                                    <a href="#">
+                                                        <img src="{{ $panier->images }}" class="w-20 rounded" alt="Images">
+                                                    </a>
+                                                    </td>
+                                                    <td>
+                                                    <a href="#">
+                                                        <p class="mb-2 md:ml-4 text-purple-600 font-bold">{{ $panier->nom }}</p>
+                                                    </a>
+                                                    </td>
+                                                    <td class="justify-center mt-6 md:justify-end md:flex">
+                                                        <form action="" method="POST">
+                                                            @csrf
+                                                            <input type="hidden" name="id" value="{{ $panier->id}}" >
+                                                            <input type="text" name="quantity" value="{{ $panier->qte }}"
+                                                                    class="w-16 text-center h-6 text-gray-800 outline-none rounded border border-blue-600" />
+                                                        </form>
+                                                    </td>
+                                                    <td class="hidden text-right md:table-cell">
+                                                    <span class="text-sm font-medium lg:text-base">
+                                                        {{ $panier->prix }} CFA
+                                                    </span>
+                                                    </td>
+                                                    <td class="hidden text-right md:table-cell">
+                                                        <form action="" method="POST">
+                                                            @csrf
+                                                            <input type="hidden" value="{{ $panier->id }}" name="id">
+                                                            <button class="btn btn-primary"><i class="fa-solid fa-trash"></i></button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
 @endsection
+
+
+
+
+

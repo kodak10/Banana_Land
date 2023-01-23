@@ -50,7 +50,7 @@ class PanierController extends Controller
             'description' => $request['description'],
             'prix' => $request['prix'],
         ]);
-        return redirect(route('panier.index'))->with('success', 'Ajouté au panier');
+        return redirect(route('vente.index'))->with('success', 'Ajouté au panier');
 
     }
 

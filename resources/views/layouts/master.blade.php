@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"/>
 
 
-    
+
     <!-- Style -->
 
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
@@ -79,12 +79,12 @@
 
                                                 <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
                                                     <i class="fa-solid fa-bell"></i>
-                                                    <span class="badge bg-primary badge-number"></span>
+                                                    <span class="badge bg-primary badge-number">1</span>
                                                 </a>
 
                                                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
                                                     <li class="dropdown-header">
-                                                        You have 4 new notifications
+                                                        Vous avez une nouvelle notifivation
                                                         <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
                                                     </li>
                                                     <li>
@@ -96,12 +96,12 @@
                                                         <div>
                                                             <h4>Lorem Ipsum</h4>
                                                             <p>Quae dolorem earum veritatis oditseno</p>
-                                                            <p>30 min. ago</p>
+                                                            <p>30 min.</p>
                                                         </div>
                                                     </li>
 
                                                     <li class="dropdown-footer">
-                                                    <a href="#">Voir tout les notifications</a>
+                                                    <a href="#">Voir toutes les notifications</a>
                                                     </li>
 
                                                 </ul>
@@ -196,6 +196,11 @@
                                                 <li>
                                                     <a href="/vente">
                                                         <i class="fa-solid fa-circle"></i><span>Gestion des Ventes</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/panier">
+                                                        <i class="fa-solid fa-circle"></i><span>Panier</span>
                                                     </a>
                                                 </li>
                                                 <li>

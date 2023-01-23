@@ -1,81 +1,52 @@
 @extends('layouts.master')
 @section('content')
+
     <main id="main" class="main">
 
         <div class="pagetitle">
-        <h1>Dashboard</h1>
-        <nav>
-            <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/home">Accueil</a></li>
-            <li class="breadcrumb-item active">Vente</li>
-            </ol>
-        </nav>
+            <h1>Dashboard</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/home">Accueil</a></li>
+                    <li class="breadcrumb-item active">Vente</li>
+                </ol>
+            </nav>
         </div>
 
         <section class="section dashboard">
-        <div class="row">
-            <div class="col-lg-8">
-                <div class="shadow-sm p-5 mb-5 bg-body-tertiary rounded">
-                    <div class="content">
-                        <div class="content-header d-flex justify-content-between">
-                            <span>Liste des Ventes</span>
-                            <a href="{{ route('vente.create') }}">Ajouter une Vente</a>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="shadow-sm p-5 mb-5 bg-body-tertiary rounded">
+                            <div class="row">
+                                @foreach ($plats as $plat)
+                                    <div class="col-lg-4 mr-3">
+                                        <div class="card text-center fw-bold " style="width: 18rem;">
+                                            <img src="{{$plat->images}}" class="card-img-top" alt="Image">
+                                            <div class="card-body">
+                                                    <h5 class="card-title">{{$plat->nom}}</h5>
+                                                    <p class="card-text">{{$plat->description}}</p>
+                                                    <p class="card-text text-danger">{{$plat->prix}}</p>
+                                                <form action="{{ route('panier.store') }}" method="POST" enctype="multipart/form-data">
+                                                        @csrf
+                                                        <input type="hidden" value="{{ $plat->id }}" name="id">
+                                                        <input type="hidden" value="{{ $plat->images }}" name="images">
+                                                        <input type="hidden" value="{{ $plat->nom }}" name="nom">
+                                                        <input type="hidden" value="{{ $plat->description }}" name="description">
+                                                        <input type="hidden" value="{{ $plat->prix }}"  name="prix">
+                                                        <input type="hidden" value="1" name="quantity">
+                                                        <button class="btn btn-primary p-1 w-100 fw-bold">Ajouter</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+
                         </div>
                     </div>
-
-
-                    <div class="table-responsive">
-                            <table class="table table-striped table-hover mt-5">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        <span class="custom-checkbox">
-                                            <input type="checkbox" id="selectAll">
-                                            <label for="selectAll"></label>
-                                        </span>
-                                    </th>
-                                    <th>Nom du plat</th>
-                                    <th>Description</th>
-                                    <th>Prix</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($plats as $plat)
-                                    <tr>
-                                        <td>
-                                            <span class="custom-checkbox">
-                                                <input type="checkbox" id="checkbox1" name="options[]" value="1">
-                                                <label for="checkbox1"></label>
-                                            </span>
-                                        </td>
-                                        <form method="POST" action="{{ route('panier.store') }}" enctype="multipart/form-data" >
-                                            @csrf
-                                            <td name="nom">{{ $plat->nom }}</td>
-                                            <td name="description">{{ $plat->description }}</td>
-                                            <td name="prix">{{ $plat->prix }}</td>
-                                            <td>
-                                                <button type="submit" class="btn btn-primary">
-                                                    {{ __('Enregistrer') }}
-                                                </button>
-                                            </td>
-                                        </form>
-                                    </tr>
-                                @endforeach
-
-                            </tbody>
-                        </table>
-                    </div>
-
                 </div>
-
-
-
             </div>
-
-
-
-        </div>
         </section>
 
     </main>
