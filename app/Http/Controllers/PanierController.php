@@ -96,6 +96,9 @@ class PanierController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $panier = panier::findOrFail($id);
+        $panier->delete();
+
+        return redirect(route('panier.index'))->with('success', 'Plat Supprimer avec succès');
     }
 }
