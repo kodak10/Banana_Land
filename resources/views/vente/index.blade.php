@@ -22,11 +22,11 @@
                                 @foreach ($plats as $plat)
                                     <div class="col-lg-4 mr-3">
                                         <div class="card text-center fw-bold " style="width: 18rem;">
-                                            <img src="{{$plat->images}}" class="card-img-top" alt="Image">
+                                            <img src="/images/{{ $plat->images }}" class="card-img-top" alt="Image">
                                             <div class="card-body">
                                                     <h5 class="card-title">{{$plat->nom}}</h5>
                                                     <p class="card-text">{{$plat->description}}</p>
-                                                    <p class="card-text text-danger">{{$plat->prix}}</p>
+                                                    <p class="card-text text-danger">{{$plat->prix}} FCFA</p>
                                                 <form action="{{ route('panier.store') }}" method="POST" enctype="multipart/form-data">
                                                         @csrf
                                                         <input type="hidden" value="{{ $plat->id }}" name="id">
@@ -34,7 +34,7 @@
                                                         <input type="hidden" value="{{ $plat->nom }}" name="nom">
                                                         <input type="hidden" value="{{ $plat->description }}" name="description">
                                                         <input type="hidden" value="{{ $plat->prix }}"  name="prix">
-                                                        <input type="hidden" value="1" name="quantity">
+                                                        <input type="hidden" value="1" name="qte">
                                                         <button class="btn btn-primary p-1 w-100 fw-bold">Ajouter</button>
                                                 </form>
                                             </div>

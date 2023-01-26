@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('prix');
             $table->string('images');
             $table->string('disponible');
-            $table->foreignId('categories_id');
+            $table->foreignId('categories_id')->contrained();
             $table->timestamps();
         });
     }

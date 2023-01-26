@@ -41,15 +41,17 @@ class CategorieController extends Controller
             'image' => 'required|file:jpg,png,svg',
         ]);
 
-        $imageName = time().'.'.$request->image->extension();
+        $input = $request->all();
 
-        $request->image->move(public_path('images'), $imageName);
+        if ($image = $request->file('image')) {
+            $destinationPath = 'images/';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $input['image'] = "$profileImage";
+        }
 
-        Categorie::create([
-            'nom' => $request['nom'],
-            'image' =>$request['image'],
-        ]);
-
+        Categorie::create($input);
+        
         return redirect(route('categorie.create'))->with('success', 'Catégorie de plat ajouter avec succès');
 
     }

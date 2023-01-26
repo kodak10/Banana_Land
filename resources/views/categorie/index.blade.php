@@ -52,8 +52,7 @@
                                                 </span>
                                             </td>
                                             <td>{{ $categorie_plat->nom }}</td>
-                                            <td>{{ $categorie_plat->images/{{ Session::get('image') }} }}</td>
-
+                                            <td><img src="/images/{{ $categorie_plat->image }}" alt="Image" style="width:60px; height:60px"></td>
                                             <td>
                                                 <form action="{{ route('categorie.destroy',$categorie_plat->id) }}" method="Post">
                                                     <a class="btn btn-primary" href="{{ route('categorie.edit',$categorie_plat->id) }}">

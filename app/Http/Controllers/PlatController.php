@@ -16,7 +16,7 @@ class PlatController extends Controller
     public function index()
     {
         $categorieplats = Categorie::orderBy('id', 'asc')->get();
-        $plats = plat::where('disponible','=','Oui')->orderBy('id','asc')->get();
+        $plats = plat::orderBy('id','asc')->get();
 
         return view('plat.index', compact('plats', 'categorieplats'));
     }
@@ -52,25 +52,15 @@ class PlatController extends Controller
 
         ]);
 
-        $categories_plat = categorie::findOrfail($request['categories_id']);
+        $input = $request->all();
 
-        $image = $request->file('images');
-
-        $imageName = time().'.'.$image->extension();
-        $image->move(public_path('images'),$imageName);
-
-
-        // return response()->json(['success'=>$imageName]);
-
-
-        $plat = $categories_plat->plats()->create([
-            'nom' => $request['nom'],
-            'description' => $request['description'],
-            'prix' => $request['prix'],
-            'images' => $request['images'],
-            'disponible' => $request['disponible'],
-            'categorie_id' => $request['categories_id'],
-        ]);
+        if ($image = $request->file('images')) {
+            $destinationPath = 'images/';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $input['images'] = "$profileImage";
+        }
+        Plat::create($input);
 
         return redirect(route('plat.create'))->with('success', 'Plat ajouter avec succès');
     }
@@ -94,7 +84,9 @@ class PlatController extends Controller
      */
     public function edit($id)
     {
-        return view('plat.edit');
+        $plat = plat::findOrFail($id);
+
+        return view('plat.edit', compact('plat'));
     }
 
     /**
@@ -106,21 +98,31 @@ class PlatController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $request->validate([
-            'nom'  =>  'required',
-            'description' =>  'required|max:255',
-            'images' => 'required|file:jpg,png,svg',
-            'prix' => 'required|integer',
-            'disponible' => 'required|boolean',
+            'nom'  =>  'max:255',
+            'description' =>  'max:255',
+            'images' => 'file:jpg,png,svg',
+            'prix' => 'integer',
+            'disponible' => 'boolean',
 
         ]);
 
         $update_plat = plat::findOrFail($id);
+
+
         $update_plat->nom = $request->get('nom');
         $update_plat->description = $request->get('description');
         $update_plat->images = $request->get('images');
         $update_plat->prix = $request->get('prix');
         $update_plat->disponible =  $request->get('disponible');
+
+        if ($image = $request->file('images')) {
+            $destinationPath = 'images/';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $input['images'] = "$profileImage";
+        }
 
         $update_plat->update();
 
@@ -138,6 +140,6 @@ class PlatController extends Controller
         $plat = plat::findOrFail($id);
         $plat->delete();
 
-        return redirect(route('plat.create'))->with('success', 'Plat supprimer avec succès');
+        return redirect(route('plat.index'))->with('success', 'Plat supprimer avec succès');
     }
 }

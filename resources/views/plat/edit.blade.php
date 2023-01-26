@@ -26,43 +26,58 @@
 
             <form method="POST" action="{{ route('plat.update',$plat->id) }}" enctype="multipart/form-data" >
 
+
                 @csrf
                 @method('PUT')
-
                 <div class="row mb-3">
 
                     <div class="col-md-6">
+                        <label class="col-form-label text-md-end">{{ __("Catégorie du Plat") }}</label>
+                        <select class="form-select" aria-label="" name="categories_id" @error('categories_id') is-invalid @enderror" value="{{ old('categories_id') }}" disabled>
+                            <option value="{{ $plat->id }}">{{$plat->categories_id}}</option>
+                         </select>
+                        @error('categories_id')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+
+                    <div class="col-md-6">
                         <label class="col-form-label text-md-end">{{ __("Nom du plat") }}</label>
-                        <input type="text" name="nom" class="form-control @error('nom') is-invalid @enderror"  value="{{ $plat->nom }}" required autocomplete="nom">
+                        <input type="text" name="nom" class="form-control @error('nom') is-invalid @enderror"  value="{{ $plat->nom }}" autocomplete="nom">
                         @error('nom')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
                     </div>
+
                     <div class="col-md-6">
                         <label class="col-form-label text-md-end">{{ __("Images") }}</label>
-                        <input type="file" name="images" class="form-control @error('images') is-invalid @enderror"  value="{{ $plat->images }}" required autocomplete="images">
+                        <input type="file" name="images" class="form-control @error('images') is-invalid @enderror"  value="{{ $plat->image }}" autocomplete="images">
                         @error('images')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
                     </div>
-
-
                 </div>
 
                 <div class="row mb-3">
 
                     <div class="col-md-6">
-                        <label class="col-form-label text-md-end">{{ __("Quantite") }}</label>
-                        {{-- <input type="text" name="quantite" class="form-control @error('quantite') is-invalid @enderror"  value="{{ $plat->quantite }}" required autocomplete="quantite">
-                        @error('quantite')
+                        <label class="col-form-label text-md-end">{{ __("Disponible") }}</label>
+                        <select class="form-select" aria-label="" name="disponible" @error('disponible') is-invalid @enderror" name="disponible" value="{{ $plat->disponible }}" required>
+                                <option value="Oui" >Oui</option>
+                                <option value="Non" >Non</option>
+                         </select>
+                        @error('disponible')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
-                        @enderror --}}
+                        @enderror
                     </div>
 
                     <div class="col-md-6">
@@ -77,10 +92,9 @@
                 </div>
 
                 <div class="row mb-3">
-
                     <div class="col-md-12">
                         <label class="col-form-label text-md-end">{{ __("Description") }}</label>
-                        <textarea type="text" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ $plat->description }}" required autocomplete="description"rows="3"></textarea>
+                        <textarea type="text" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ $plat->description }}" autocomplete="description"rows="3"></textarea>
                         @error('description')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -88,18 +102,15 @@
                         @enderror
                     </div>
 
-
                 </div>
-
-
 
                 <div class="row mb-0 mt-3">
                     <div class="col-md-12">
-                        <button type="submit" class="btn btn-success">
+                        <button type="submit" class="btn btn-primary">
                             {{ __('Mettre à jour') }}
                         </button>
                         <a  href="{{route('plat.index')}}" class="btn btn-danger">
-                            {{ __('Annuler') }}
+                            {{ __('Retour') }}
                         </a>
                     </div>
                 </div>
