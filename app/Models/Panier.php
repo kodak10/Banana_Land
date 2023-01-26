@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\vente;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Panier extends Model
 {
@@ -16,4 +17,9 @@ class Panier extends Model
         'nom',
         'prix',
     ];
+
+    public function categorieplat()
+    {
+        return $this->belongsTo(vente::class);
+    }
 }

@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('ventes', function (Blueprint $table) {
             $table->id();
-            $table->string('id_panier');
+            $table->string('qte');
+            $table->foreignId('panier_id');
             $table->timestamps();
         });
     }

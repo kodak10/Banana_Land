@@ -48,7 +48,7 @@
                                                         <form action="" method="POST">
                                                             @csrf
                                                             <input type="hidden" name="id" value="{{ $panier->id}}" >
-                                                            <input type="text" name="quantity" value="{{ $panier->qte }}"
+                                                            <input type="text" name="qte" value="{{ $panier->qte }}"
                                                                 class="w-16 text-center h-6 text-gray-800 outline-none rounded border border-blue-600" />
                                                         </form>
                                                     </td>
@@ -75,11 +75,7 @@
                                 <form action="{{ route('vente.store') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <input type="hidden" value="{{ $panier->id }}" name="id">
-                                    <input type="hidden" value="{{ $panier->images }}" name="images">
-                                    <input type="hidden" value="{{ $panier->nom }}" name="nom">
-                                    <input type="hidden" value="{{ $panier->description }}" name="description">
-                                    <input type="hidden" value="{{ $panier->prix }}"  name="prix">
-                                    <input type="hidden" value="1" name="quantity">
+                                    <input type="hidden" value="1" name="qte">
                                     <button class="btn btn-primary p-1 w-100 fw-bold">Valider la Commande</button>
                                 </form>
                             </div>

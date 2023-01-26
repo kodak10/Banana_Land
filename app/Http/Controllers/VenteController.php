@@ -43,12 +43,10 @@ class VenteController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'nom' => 'required',
-        ]);
 
         vente::create([
-            'id' => $request['id'],
+            'panier_id' => $request['id'],
+            'qte' => $request['id'],
         ]);
         return redirect(route('vente.index'))->with('success', 'Votre commande à été valider avec succes');
     }

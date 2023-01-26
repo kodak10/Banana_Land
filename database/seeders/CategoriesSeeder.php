@@ -22,7 +22,7 @@ class CategoriesSeeder extends Seeder
             ],
             [
                 'nom' => 'Attieke',
-                'image' => 'https://cdn.pixabay.com/photo/2016/07/23/15/24/egg-1536990__340.jpg',
+                'image' => 'https://cdn.pixabay.com/photo/2014/03/11/08/25/cassava-285033_960_720.jpg',
             ],
             [
                 'nom' => 'Riz',

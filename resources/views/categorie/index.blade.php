@@ -52,7 +52,7 @@
                                                 </span>
                                             </td>
                                             <td>{{ $categorie_plat->nom }}</td>
-                                            <td>{{ $categorie_plat->Image }}</td>
+                                            <td>{{ $categorie_plat->images/{{ Session::get('image') }} }}</td>
 
                                             <td>
                                                 <form action="{{ route('categorie.destroy',$categorie_plat->id) }}" method="Post">

@@ -15,6 +15,7 @@ class PanierController extends Controller
      */
     public function index()
     {
+        $plats = Plat::get();
         $paniers = Panier::orderBy('created_at','asc')->get();
 
         return view('panier.index', compact('paniers'));

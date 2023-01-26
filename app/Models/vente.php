@@ -11,5 +11,13 @@ class vente extends Model
 
     protected $fillable = [
         'id',
+        'qte',
+        'panier_id',
     ];
+
+    public function plats()
+    {
+        return $this->hasMany(Plat::class, 'panier_id' ,'id');
+
+    }
 }
