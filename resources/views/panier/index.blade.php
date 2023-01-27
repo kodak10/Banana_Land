@@ -18,56 +18,6 @@
                     <div class="col-lg-12">
                         <div class="shadow-sm p-5 mb-5 bg-body-tertiary rounded">
                             <div class="row">
-                                {{-- <table class="w-full text-sm lg:text-base" cellspacing="0">
-                                    <thead>
-                                      <tr class="h-12 uppercase">
-                                        <th class="hidden md:table-cell"></th>
-                                        <th class="text-left">Nom</th>
-                                        <th class="hidden text-right md:table-cell"> Prix</th>
-                                        <th class="hidden text-right md:table-cell"> Retirer </th>
-                                      </tr>
-                                    </thead>
-                                    <tbody>
-
-
-                                        @foreach ($PanierItems as $PanierItem)
-                                            @if ($PanierItem->count() === 1)
-                                                <span>Votre Panier est vide</span>
-                                            @else
-
-                                            <tr>
-                                                <td class="hidden pb-4 md:table-cell">
-                                                    <a href="#">
-                                                        <img src="images/{{ $PanierItem->images }}" class="w-20 rounded" alt="Image">
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <a href="#">
-                                                        <p class="mb-2 md:ml-4 text-purple-600 font-bold">{{ $PanierItem->nom }}</p>
-                                                    </a>
-                                                </td>
-                                                <td class="hidden text-right md:table-cell">
-                                                    <span class="text-sm font-medium lg:text-base">
-                                                        {{ $PanierItem->prix }} FCFA
-                                                    </span>
-                                                </td>
-                                                <td class="hidden text-right md:table-cell">
-                                                    <form action="{{-- {{ route('cart.remove') }} --}}" method="POST">
-                                                        @csrf
-                                                        <input type="hidden" value="{{ $PanierItem->id }}" name="id">
-                                                        <button class=""><i class="fa-solid fa-trash"></i></button>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                            @endif
-                                        @endforeach
-
-                                    </tbody>
-                                  </table> --}}
-
-
-
-
 
                                 <table class="w-full text-sm lg:text-base" cellspacing="0">
                                         <thead>
@@ -83,47 +33,49 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                            @if ($PanierItem->count() === 1)
-                                                <span>Votre Panier est vide</span>
-                                            @else
-                                                @foreach ($PanierItems as $PanierItem)
-                                                    <tr>
-                                                        <td class="hidden pb-4 md:table-cell">
-                                                            <a href="#">
-                                                                <img src="{{ $PanierItem->images }}" class="w-20 rounded" alt="Images">
-                                                            </a>
-                                                        </td>
-                                                        <td>
-                                                            <a href="#">
-                                                                <p class="mb-2 md:ml-4 text-purple-600 font-bold">{{ $PanierItem->nom }}</p>
-                                                            </a>
-                                                        </td>
-                                                        <td class="justify-center mt-6 md:justify-end md:flex">
-                                                            <form action="" method="POST">
-                                                                @csrf
-                                                                <input type="hidden" name="id" value="{{ $PanierItem->id}}" >
-                                                                <input type="text" name="qte" value="{{ $PanierItem->qte }}"
-                                                                    class="w-16 text-center h-6 text-gray-800 outline-none rounded border border-blue-600" />
-                                                            </form>
-                                                        </td>
-                                                        <td class="hidden text-right md:table-cell">
-                                                            <span class="text-sm font-medium lg:text-base">
-                                                                {{ $PanierItem->prix }} CFA
-                                                            </span>
-                                                        </td>
-                                                        <td class="hidden text-right md:table-cell">
 
-                                                            <form action="{{ route('panier.destroy',$PanierItem->id) }}" method="Post">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button type="submit" class="btn btn-danger">
-                                                                    <i class="fa-solid fa-trash" style="color: red;"></i>
-                                                                </button>
-                                                            </form>
-                                                        </td>
+                                            @foreach ($PanierItems as $PanierItem)
+                                                @if ($PanierItem->count() === 1)
+                                                    <span>Votre Panier est vide</span>
+                                                @else
+                                                    <tr>
+                                                            <td class="hidden pb-4 md:table-cell">
+                                                                <a href="#">
+                                                                    <img src="{{ $PanierItem->images }}" class="w-20 rounded" alt="Images">
+                                                                </a>
+                                                            </td>
+                                                            <td>
+                                                                <a href="#">
+                                                                    <p class="mb-2 md:ml-4 text-purple-600 font-bold">{{ $PanierItem->nom }}</p>
+                                                                </a>
+                                                            </td>
+                                                            <td class="justify-center mt-6 md:justify-end md:flex">
+                                                                <form action="" method="POST">
+                                                                    @csrf
+                                                                    <input type="hidden" name="id" value="{{ $PanierItem->id}}" >
+                                                                    <input type="text" name="qte" value="{{ $PanierItem->qte }}"
+                                                                        class="w-16 text-center h-6 text-gray-800 outline-none rounded border border-blue-600" />
+                                                                </form>
+                                                            </td>
+                                                            <td class="hidden text-right md:table-cell">
+                                                                <span class="text-sm font-medium lg:text-base">
+                                                                    {{ $PanierItem->prix }} CFA
+                                                                </span>
+                                                            </td>
+                                                            <td class="hidden text-right md:table-cell">
+
+                                                                <form action="{{ route('panier.destroy',$PanierItem->id) }}" method="Post">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="submit" class="btn btn-danger">
+                                                                        <i class="fa-solid fa-trash" style="color: red;"></i>
+                                                                    </button>
+                                                                </form>
+                                                            </td>
                                                     </tr>
-                                                @endforeach
-                                            @endif
+                                                @endif
+                                            @endforeach
+
                                         </tbody>
                                 </table>
 
