@@ -43,7 +43,6 @@
                         @enderror
                     </div>
 
-
                     <div class="col-md-6">
                         <label class="col-form-label text-md-end">{{ __("Nom du plat") }}</label>
                         <input type="text" name="nom" class="form-control @error('nom') is-invalid @enderror"  value="{{ $plat->nom }}" autocomplete="nom">
@@ -56,7 +55,7 @@
 
                     <div class="col-md-6">
                         <label class="col-form-label text-md-end">{{ __("Images") }}</label>
-                        <input type="file" name="images" class="form-control @error('images') is-invalid @enderror"  value="{{ $plat->image }}" autocomplete="images">
+                        <input type="file" name="images" class="form-control @error('images') is-invalid @enderror" value="images/plats/{{ $plat->image }}" autocomplete="images">
                         @error('images')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

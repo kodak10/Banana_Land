@@ -79,7 +79,7 @@
                                             <td>{{ $plat->nom }}</td>
                                             <td>{{ $plat->description }}</td>
                                             <td>{{ $plat->prix }}</td>
-                                            <td><img src="/images/{{ $plat->images }}" alt="Image" style="width:60px; height:60px"></td>
+                                            <td><img src="/images/plats/{{ $plat->images }}" alt="Image" style="width:60px; height:60px"></td>
                                             <td>{{ $plat->disponible }}</td>
 
                                             <td>

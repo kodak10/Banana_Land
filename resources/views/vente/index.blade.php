@@ -22,7 +22,7 @@
                                 @foreach ($plats as $plat)
                                     <div class="col-lg-4 mr-3">
                                         <div class="card text-center fw-bold " style="width: 18rem;">
-                                            <img src="/images/{{ $plat->images }}" class="card-img-top" alt="Image">
+                                            <img src="/images/plats/{{ $plat->images }}" class="card-img-top" alt="Image">
                                             <div class="card-body">
                                                     <h5 class="card-title">{{$plat->nom}}</h5>
                                                     <p class="card-text">{{$plat->description}}</p>
@@ -41,6 +41,9 @@
                                         </div>
                                     </div>
                                 @endforeach
+                            </div>
+                            <div class="d-flex">
+                                {{$plats->links()}}
                             </div>
 
                         </div>

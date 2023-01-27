@@ -49,13 +49,12 @@ class PlatController extends Controller
             'images' => 'required|file:jpg,png,svg',
             'prix' => 'required|integer',
             'disponible' => 'required',
-
         ]);
 
         $input = $request->all();
 
         if ($image = $request->file('images')) {
-            $destinationPath = 'images/';
+            $destinationPath = 'images/plats';
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             $input['images'] = "$profileImage";
@@ -111,6 +110,7 @@ class PlatController extends Controller
         $update_plat = plat::findOrFail($id);
 
 
+
         $update_plat->nom = $request->get('nom');
         $update_plat->description = $request->get('description');
         $update_plat->images = $request->get('images');
@@ -118,7 +118,7 @@ class PlatController extends Controller
         $update_plat->disponible =  $request->get('disponible');
 
         if ($image = $request->file('images')) {
-            $destinationPath = 'images/';
+            $destinationPath = 'images/plats';
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             $input['images'] = "$profileImage";

@@ -204,7 +204,7 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="/transfert">
+                                                    <a href="#">
                                                         <i class="fa-solid fa-circle"></i><span>Gestion des Transferts</span>
                                                     </a>
                                                 </li>

@@ -18,7 +18,7 @@ class VenteController extends Controller
      */
     public function index()
     {
-        $plats = plat::where('disponible','=','Oui')->orderby('nom','asc')->get();
+        $plats = plat::where('disponible','=','Oui')->orderby('nom','asc')->paginate(6);
 
         return view('vente.index', compact('plats'));
     }
