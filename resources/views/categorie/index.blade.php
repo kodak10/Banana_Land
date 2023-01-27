@@ -44,33 +44,42 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($categorie_plats as $categorie_plat)
-                                        <tr>
-                                            <td>
-                                                <span class="custom-checkbox">
-                                                    <input type="checkbox" id="checkbox1" name="options[]" value="1">
-                                                    <label for="checkbox1"></label>
-                                                </span>
-                                            </td>
-                                            <td>{{ $categorie_plat->nom }}</td>
-                                            <td><img src="/images/{{ $categorie_plat->image }}" alt="Image" style="width:60px; height:60px"></td>
-                                            <td>
-                                                <form action="{{ route('categorie.destroy',$categorie_plat->id) }}" method="Post">
-                                                    <a class="btn btn-primary" href="{{ route('categorie.edit',$categorie_plat->id) }}">
-                                                        <i class="fa-solid fa-pen"></i>
-                                                    </a>
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger">
-                                                        <i class="fa-solid fa-trash" style="color: red;"></i>
-                                                    </button>
-                                                </form>
-                                            </td>
 
-                                        </tr>
+                                            <tr>
+                                                @if($categorie_plat->count() === 1)
+                                                    <span>Aucun enregistrement</span>
+                                                @else
+                                                <td>
+                                                    <span class="custom-checkbox">
+                                                        <input type="checkbox" id="checkbox1" name="options[]" value="1">
+                                                        <label for="checkbox1"></label>
+                                                    </span>
+                                                </td>
+                                                <td>{{ $categorie_plat->nom }}</td>
+                                                <td><img src="/images/{{ $categorie_plat->image }}" alt="Image" style="width:60px; height:60px"></td>
+                                                <td>
+                                                    <form action="{{ route('categorie.destroy',$categorie_plat->id) }}" method="Post">
+                                                        <a class="btn btn-primary" href="{{ route('categorie.edit',$categorie_plat->id) }}">
+                                                            <i class="fa-solid fa-pen"></i>
+                                                        </a>
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger">
+                                                            <i class="fa-solid fa-trash" style="color: red;"></i>
+                                                        </button>
+                                                    </form>
+                                                </td>
+
+                                            </tr>
+                                        @endif
                                     @endforeach
 
                                 </tbody>
                             </table>
+
+                            <div class="d-flex">
+                                {{$categorie_plats->links()}}
+                            </div>
 
                         </div>
 

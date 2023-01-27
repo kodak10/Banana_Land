@@ -46,6 +46,10 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($utilisateurs as $utilisateur)
+                                        @if($utilisateur->count() === 1)
+                                            <span>Aucun enregistrement</span>
+                                        @else
+
                                         <tr>
                                             <td>
                                                 <span class="custom-checkbox">
@@ -70,10 +74,14 @@
                                                 </form>
                                             </td>
                                         </tr>
+                                        @endif
                                     @endforeach
 
                                 </tbody>
                             </table>
+                            <div class="d-flex">
+                                {!! $utilisateurs->links() !!}
+                            </div>
                         </div>
                     </div>
 

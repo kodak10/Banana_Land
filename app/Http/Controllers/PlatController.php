@@ -16,7 +16,7 @@ class PlatController extends Controller
     public function index()
     {
         $categorieplats = Categorie::orderBy('id', 'asc')->get();
-        $plats = plat::orderBy('id','asc')->get();
+        $plats = plat::orderBy('id','asc')->paginate(3);
 
         return view('plat.index', compact('plats', 'categorieplats'));
     }

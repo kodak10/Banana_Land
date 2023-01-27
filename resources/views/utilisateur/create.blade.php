@@ -95,6 +95,9 @@
                         <button type="submit" class="btn btn-primary">
                             {{ __('Enregistrer') }}
                         </button>
+                        <a  href="{{route('utilisateur.index')}}" class="btn btn-danger">
+                            {{ __('Retour') }}
+                        </a>
                     </div>
                 </div>
 

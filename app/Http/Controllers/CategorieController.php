@@ -14,7 +14,7 @@ class CategorieController extends Controller
      */
     public function index()
     {
-        $categorie_plats = Categorie::orderBy('id','asc')->get();
+        $categorie_plats = Categorie::orderBy('id','asc')->paginate(5);
         return view('categorie.index', compact('categorie_plats'));
     }
 
@@ -51,7 +51,7 @@ class CategorieController extends Controller
         }
 
         Categorie::create($input);
-        
+
         return redirect(route('categorie.create'))->with('success', 'Catégorie de plat ajouter avec succès');
 
     }

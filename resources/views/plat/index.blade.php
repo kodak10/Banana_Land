@@ -46,7 +46,7 @@
                     </div>
 
                     <div class="table-responsive">
-                            <table class="table table-striped table-hover mt-5">
+                        <table class="table table-striped table-hover mt-5">
                             <thead>
                                 <tr>
                                     <th>
@@ -64,38 +64,47 @@
                                 </tr>
                             </thead>
                             <tbody>
+
                                 @foreach ($plats as $plat)
-                                    <tr>
-                                        <td>
-                                            <span class="custom-checkbox">
-                                                <input type="checkbox" id="checkbox1" name="options[]" value="1">
-                                                <label for="checkbox1"></label>
-                                            </span>
-                                        </td>
-                                        <td>{{ $plat->nom }}</td>
-                                        <td>{{ $plat->description }}</td>
-                                        <td>{{ $plat->prix }}</td>
-                                        <td><img src="/images/{{ $plat->images }}" alt="Image" style="width:60px; height:60px"></td>
-                                        <td>{{ $plat->disponible }}</td>
+                                        @if($plat->count() === 1)
+                                        <span>Aucun enregistrement</span>
+                                    @else
+                                        <tr>
+                                            <td>
+                                                <span class="custom-checkbox">
+                                                    <input type="checkbox" id="checkbox1" name="options[]" value="1">
+                                                    <label for="checkbox1"></label>
+                                                </span>
+                                            </td>
+                                            <td>{{ $plat->nom }}</td>
+                                            <td>{{ $plat->description }}</td>
+                                            <td>{{ $plat->prix }}</td>
+                                            <td><img src="/images/{{ $plat->images }}" alt="Image" style="width:60px; height:60px"></td>
+                                            <td>{{ $plat->disponible }}</td>
 
-                                        <td>
-                                            <form action="{{ route('plat.destroy',$plat->id) }}" method="Post">
-                                                <a class="btn btn-primary" href="{{ route('plat.edit',$plat->id) }}">
-                                                    <i class="fa-solid fa-pen"></i>
-                                                </a>
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">
-                                                    <i class="fa-solid fa-trash" style="color: red;"></i>
-                                                </button>
-                                            </form>
-                                        </td>
+                                            <td>
+                                                <form action="{{ route('plat.destroy',$plat->id) }}" method="Post">
+                                                    <a class="btn btn-primary" href="{{ route('plat.edit',$plat->id) }}">
+                                                        <i class="fa-solid fa-pen"></i>
+                                                    </a>
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger">
+                                                        <i class="fa-solid fa-trash" style="color: red;"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
 
-                                    </tr>
+                                        </tr>
+                                    @endif
                                 @endforeach
 
                             </tbody>
                         </table>
+
+                        <div class="d-flex">
+                            {{$plats->links()}}
+                        </div>
 
                     </div>
 

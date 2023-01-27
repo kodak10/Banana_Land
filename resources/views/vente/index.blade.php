@@ -32,10 +32,10 @@
                                                         <input type="hidden" value="{{ $plat->id }}" name="id">
                                                         <input type="hidden" value="{{ $plat->images }}" name="images">
                                                         <input type="hidden" value="{{ $plat->nom }}" name="nom">
-                                                        <input type="hidden" value="{{ $plat->description }}" name="description">
+                                                        <input type="hidden" value="{{ $plat->description }}" name="description" >
                                                         <input type="hidden" value="{{ $plat->prix }}"  name="prix">
                                                         <input type="hidden" value="1" name="qte">
-                                                        <button class="btn btn-primary p-1 w-100 fw-bold">Ajouter</button>
+                                                        <button class="btn btn-primary p-1 w-100 fw-bold"><i class="fa-solid fa-cart-plus"></i> Ajouter</button>
                                                 </form>
                                             </div>
                                         </div>
