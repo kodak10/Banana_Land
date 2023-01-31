@@ -18,7 +18,7 @@
                         <div class="content">
                             <div class="content-header d-flex justify-content-between">
                                 <span>Liste des Categories</span>
-                                <a  class="btn btn-primary" href="{{ route('categorie.create') }}">Ajouter une Categorie</a>
+                                <a  class="btn btn-primary" href="{{ route('categorie.create') }}">Ajouter une Catégorie</a>
                             </div>
                         </div>
                         @if ($message = Session::get('success'))

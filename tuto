@@ -1,6 +1,0 @@
-<select name="category_id" class="block w-full mt-1 rounded-md">
-                                    @foreach ($categories as $category)
-                                    <option @selected($category->id == $post->category_id)
-                                        value="{{$category->id}}">{{$category->name}}</option>
-                                    @endforeach
-                                </select>

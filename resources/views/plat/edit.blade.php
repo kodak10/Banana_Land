@@ -34,8 +34,10 @@
                     <div class="col-md-6">
                         <label class="col-form-label text-md-end">{{ __("Catégorie du Plat") }}</label>
                         <select class="form-select" aria-label="" name="categories_id" @error('categories_id') is-invalid @enderror" value="{{ old('categories_id') }}" disabled>
-                            <option value="{{ $plat->id }}">{{$plat->categories_id}}</option>
-                         </select>
+                            @foreach ($categories as $categorie)
+                                <option @selected($categorie->id == $plat->categories_id)
+                                    value="{{$categorie->id}}">{{$categorie->nom}}</option>
+                            @endforeach                         </select>
                         @error('categories_id')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

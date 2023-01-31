@@ -83,9 +83,10 @@ class PlatController extends Controller
      */
     public function edit($id)
     {
+        $categories = Categorie::orderBy('id', 'asc')->get();
         $plat = plat::findOrFail($id);
 
-        return view('plat.edit', compact('plat'));
+        return view('plat.edit', compact('plat', 'categories'));
     }
 
     /**

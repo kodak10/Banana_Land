@@ -16,7 +16,7 @@
         <div class="container p-3">
 
             <div class="section-header">
-                <h4 class="section-title">Ajouter un Plats</h4>
+                <h4 class="section-title">Ajouter un Plat</h4>
             </div>
             @if ($message = Session::get('success'))
                 <div class="alert alert-success">

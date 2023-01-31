@@ -180,22 +180,22 @@
                                             <ul id="admin" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                                                 <li>
                                                     <a href="/utilisateur">
-                                                        <i class="fa-solid fa-circle"></i><span>Gestion des Utilisateurs</span>
+                                                        <i class="fa-solid fa-circle"></i><span>Utilisateurs</span>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="/categorie">
-                                                        <i class="fa-solid fa-circle"></i><span>Gestion des Catégories</span>
+                                                        <i class="fa-solid fa-circle"></i><span>Catégories</span>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="/plat">
-                                                        <i class="fa-solid fa-circle"></i><span>Gestion des Plats</span>
+                                                        <i class="fa-solid fa-circle"></i><span>Plats</span>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="/vente">
-                                                        <i class="fa-solid fa-circle"></i><span>Gestion des Ventes</span>
+                                                        <i class="fa-solid fa-circle"></i><span>Ventes</span>
                                                     </a>
                                                 </li>
                                                 <li>
@@ -205,7 +205,7 @@
                                                 </li>
                                                 <li>
                                                     <a href="#">
-                                                        <i class="fa-solid fa-circle"></i><span>Gestion des Transferts</span>
+                                                        <i class="fa-solid fa-circle"></i><span>Transferts</span>
                                                     </a>
                                                 </li>
                                             </ul>
