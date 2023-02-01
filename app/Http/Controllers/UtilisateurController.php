@@ -51,9 +51,7 @@ class UtilisateurController extends Controller
             'password' => Hash::make($request['password']),
         ]);
 
-        return redirect(route('utilisateur.create'))->with('success', 'Utilisateur Ajouter avec succès');
-
-
+        return redirect(route('utilisateur.create'))->with('success', 'Utilisateur ajouté avec succès');
     }
 
     /**
@@ -64,7 +62,7 @@ class UtilisateurController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -75,9 +73,8 @@ class UtilisateurController extends Controller
      */
     public function edit($id)
     {
-        $utilisateur = User::findOrFail($id);
-
-        return view('utilisateur.edit', compact('utilisateur'));
+        $utilisateurs = User::findOrFail($id);
+        return view('utilisateur.edit', compact('utilisateurs'));
     }
 
     /**
@@ -117,7 +114,7 @@ class UtilisateurController extends Controller
         $utilisateur = User::findOrFail($id);
         $utilisateur->delete();
 
-        return redirect(route('utilisateur.index'))->with('success', 'Utilisateur Supprimer avec succès');
+        return redirect(route('utilisateur.index'))->with('success', 'Utilisateur supprimé avec succès');
     }
 
 
@@ -132,7 +129,7 @@ class UtilisateurController extends Controller
 
             #Match The Old Password
             if(!Hash::check($request->old_password, auth()->user()->password)){
-                return back()->with("error", "Old Password Doesn't match!");
+                return back()->with("error", "Les deux mot de passe sont différents!");
             }
 
 
@@ -141,6 +138,6 @@ class UtilisateurController extends Controller
                 'password' => Hash::make($request->new_password)
             ]);
 
-            return back()->with("status", "Password changed successfully!");
+            return back()->with("status", "Mot de passe mise à jour avec succès!");
     }
 }

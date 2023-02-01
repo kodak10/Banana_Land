@@ -55,6 +55,7 @@
                         <label class="col-form-label text-md-end">{{ __("Fonction") }}</label>
                         <select class="form-select" aria-label="" name="fonction" @error('fonction') is-invalid @enderror" name="fonction" value="{{ old('fonction') }}" required>
                             <option value="Administrateur">Administrateur</option>
+                            <option value="Partenaire">Partenaire</option>
                             <option value="Recouvreur">Recouvreur</option>
                             <option value="Comptable">Comptable</option>
                         </select>

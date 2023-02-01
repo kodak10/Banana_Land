@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\vente;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -11,15 +10,11 @@ class Panier extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id',
-        'image',
-        'description',
-        'nom',
-        'prix',
+        'plats_id',
     ];
 
-    public function categorieplat()
+    public function plat()
     {
-        return $this->belongsTo(vente::class);
+        return $this->belongsTo(plat::class);
     }
 }

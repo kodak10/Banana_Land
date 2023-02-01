@@ -15,7 +15,7 @@
         <div class="container p-3">
 
             <div class="section-header">
-                <h4 class="section-title">Ajouter un Utilisateur</h4>
+                <h4 class="section-title">Modification de l'utilisateur</h4>
             </div>
             @if ($message = Session::get('success'))
                 <div class="alert alert-success">
@@ -23,7 +23,7 @@
                 </div>
             @endif
 
-            <form method="POST" action="{{ route('utilisateur.update',$utilisateur->id) }}" enctype="multipart/form-data" >
+            <form method="POST" action="{{ route('utilisateur.update',$utilisateurs->id) }}" enctype="multipart/form-data" >
 
                 @csrf
                 @method('PUT')
@@ -31,7 +31,7 @@
 
                     <div class="col-md-6">
                         <label class="col-form-label text-md-end">{{ __("Nom d'utilisateur") }}</label>
-                        <input type="text" name="username" class="form-control @error('username') is-invalid @enderror"  value="{{ $utilisateur->username }}" required>
+                        <input type="text" name="username" class="form-control @error('username') is-invalid @enderror"  value="{{ $utilisateurs->username }}" required>
                         @error('username')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -40,7 +40,7 @@
                     </div>
                     <div class="col-md-6">
                         <label class="col-form-label text-md-end">{{ __("Email") }}</label>
-                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $utilisateur->email }}" required>
+                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $utilisateurs->email }}" required>
                         @error('email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -56,7 +56,7 @@
                     <div class="col-md-12">
                         <label class="col-form-label text-md-end">{{ __("Fonction") }}</label>
                         <select class="form-select " aria-label="Disabled" name="fonction" @error('fonction') is-invalid @enderror" name="fonction"  Disabled>
-                                 <option value="{{$utilisateur->id}}">{{$utilisateur->fonction}}</option>
+                                 <option value="{{$utilisateurs->id}}">{{$utilisateurs->fonction}}</option>
                         </select>
                         @error('fonction')
                             <span class="invalid-feedback" role="alert">
@@ -70,7 +70,7 @@
 
                     <div class="col-md-6">
                         <label class="col-form-label text-md-end">{{ __("Mot de passe") }}</label>
-                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ $utilisateur->password }}" required>
+                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ $utilisateurs->password }}">
                         @error('password')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -79,7 +79,7 @@
                     </div>
                     <div class="col-md-6">
                         <label class="col-form-label text-md-end">{{ __("Confirmer le Mot de passe") }}</label>
-                        <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation" value="{{ $utilisateur->password }}" required>
+                        <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation" value="{{ $utilisateurs->password }}" >
                         @error('password_confirmation')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

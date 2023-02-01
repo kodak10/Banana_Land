@@ -10,14 +10,12 @@ class vente extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id',
-        'qte',
         'panier_id',
+        'qte',
     ];
 
-    public function plats()
+    public function plat()
     {
-        return $this->hasMany(Plat::class, 'panier_id' ,'id');
-
+        return $this->belongsTo(plat::class);
     }
 }

@@ -52,7 +52,7 @@ class CategorieController extends Controller
 
         Categorie::create($input);
 
-        return redirect(route('categorie.create'))->with('success', 'Catégorie de plat ajouter avec succès');
+        return redirect(route('categorie.create'))->with('success', 'Catégorie de plat ajouté avec succès');
 
     }
 
@@ -89,13 +89,20 @@ class CategorieController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nom'  =>  'required|unique:categories',
+            'nom'  =>  'required',
             'image' => 'required|file:jpg,png,svg',
         ]);
 
+
         $update_categorie_plat = Categorie::findOrFail($id);
+
+        if ($image = $request->file('image')) {
+            $destinationPath = 'images/categories';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $update_categorie_plat['image'] = "$profileImage";
+        }
         $update_categorie_plat->nom = $request->get('nom');
-        $update_categorie_plat->image = $request->get('images');
 
         $update_categorie_plat->update();
 
@@ -114,6 +121,6 @@ class CategorieController extends Controller
         $categorie_plat = Categorie::findOrFail($id);
         $categorie_plat->delete();
 
-        return redirect(route('categorie.index'))->with('success', 'Catégorie de plat supprimer avec succès');
+        return redirect(route('categorie.index'))->with('success', 'Catégorie de plat supprimé avec succès');
     }
 }

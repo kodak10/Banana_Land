@@ -29,9 +29,8 @@ class PlatController extends Controller
     public function create()
     {
         $categories = Categorie::orderBy('id', 'asc')->get();
-        $plats = plat::orderBy('id','asc')->paginate(4);
 
-        return view ('plat.create', compact('categories','plats'));
+        return view ('plat.create', compact('categories'));
     }
 
     /**
@@ -61,7 +60,7 @@ class PlatController extends Controller
         }
         Plat::create($input);
 
-        return redirect(route('plat.create'))->with('success', 'Plat ajouter avec succès');
+        return redirect(route('plat.create'))->with('success', 'Plat ajouté avec succès');
     }
 
     /**
@@ -84,9 +83,9 @@ class PlatController extends Controller
     public function edit($id)
     {
         $categories = Categorie::orderBy('id', 'asc')->get();
-        $plat = plat::findOrFail($id);
+        $plats = plat::findOrFail($id);
 
-        return view('plat.edit', compact('plat', 'categories'));
+        return view('plat.edit', compact('plats', 'categories'));
     }
 
     /**
@@ -98,36 +97,32 @@ class PlatController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         $request->validate([
+            'categories_id' => 'required|integer',
             'nom'  =>  'max:255',
             'description' =>  'max:255',
             'images' => 'file:jpg,png,svg',
             'prix' => 'integer',
-            'disponible' => 'boolean',
-
+            'disponible' => 'required',
         ]);
 
-        $update_plat = plat::findOrFail($id);
-
-
-
-        $update_plat->nom = $request->get('nom');
-        $update_plat->description = $request->get('description');
-        $update_plat->images = $request->get('images');
-        $update_plat->prix = $request->get('prix');
-        $update_plat->disponible =  $request->get('disponible');
+        $update_plats = plat::findOrFail($id);
 
         if ($image = $request->file('images')) {
             $destinationPath = 'images/plats';
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
-            $input['images'] = "$profileImage";
+            $update_plats['images'] = "$profileImage";
         }
+        $update_plats->categories_id = $request->get('categories_id');
+        $update_plats->nom = $request->get('nom');
+        $update_plats->prix = $request->get('prix');
+        $update_plats->disponible =  $request->get('disponible');
+        $update_plats->description = $request->get('description');
 
-        $update_plat->update();
+        $update_plats->update();
 
-        return redirect(route('plat.index'))->with('success', 'Plat modifier avec succès');
+        return redirect(route('plat.index'))->with('success', 'Plat modifié avec succès');
     }
 
     /**
@@ -138,9 +133,9 @@ class PlatController extends Controller
      */
     public function destroy($id)
     {
-        $plat = plat::findOrFail($id);
-        $plat->delete();
+        $plats = plat::findOrFail($id);
+        $plats->delete();
 
-        return redirect(route('plat.index'))->with('success', 'Plat supprimer avec succès');
+        return redirect(route('plat.index'))->with('success', 'Plat supprimé avec succès');
     }
 }

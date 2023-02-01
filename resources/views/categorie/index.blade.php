@@ -6,7 +6,7 @@
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/home">Accueil</a></li>
-                    <li class="breadcrumb-item active">Categories</li>
+                    <li class="breadcrumb-item active">Catégories</li>
                 </ol>
             </nav>
         </div>
@@ -17,7 +17,7 @@
                     <div class="shadow-sm p-5 mb-5 bg-body-tertiary rounded">
                         <div class="content">
                             <div class="content-header d-flex justify-content-between">
-                                <span>Liste des Categories</span>
+                                <span>Liste des Catégories de Plat</span>
                                 <a  class="btn btn-primary" href="{{ route('categorie.create') }}">Ajouter une Catégorie</a>
                             </div>
                         </div>

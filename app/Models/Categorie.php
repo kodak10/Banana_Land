@@ -11,7 +11,7 @@ class Categorie extends Model
 
     protected $fillable = [
         'nom',
-        'image'
+        'image',
     ];
 
     public function plats()

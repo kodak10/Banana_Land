@@ -6,7 +6,7 @@
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/home">Accueil</a></li>
-                <li class="breadcrumb-item active">Plats</li>
+                <li class="breadcrumb-item active">Plat</li>
             </ol>
         </nav>
         </div>
@@ -20,29 +20,6 @@
                             <span>Liste des Plats</span>
                             <a  class="btn btn-primary" href="{{ route('plat.create') }}">Ajouter un Plat</a>
                         </div>
-                    </div>
-
-                    <div class="modal fade" id="addCategorie" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter une Catégorie</h1>
-                          </div>
-                          <div class="modal-body">
-                                <form action="{{route('categorie.store')}}">
-                                <div class="mb-3">
-                                    <label class="col-form-label">Nom de la catégorie</label>
-                                    <input type="text" class="form-control" name="name_categorie">
-                                </div>
-
-                                </form>
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
-                            <button type="" class="btn btn-success">Enregistrer</button>
-                          </div>
-                        </div>
-                      </div>
                     </div>
 
                     <div class="table-responsive">

@@ -261,7 +261,7 @@
 
         <footer id="footer" class="footer">
             <div class="copyright">
-                &copy; Copyright <strong><span>Firewall Agency</span></strong>. Tout droits réservés
+                &copy; Copyright <strong><span>Firewall Agency</span></strong>. Tous droits réservés
             </div>
             <div class="credits">
                 Version 1.0

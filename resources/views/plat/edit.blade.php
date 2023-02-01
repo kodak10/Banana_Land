@@ -16,7 +16,7 @@
         <div class="container p-3">
 
             <div class="section-header">
-                <h4 class="section-title">Ajouter un Plats</h4>
+                <h4 class="section-title">Modification du plat</h4>
             </div>
             @if ($message = Session::get('success'))
                 <div class="alert alert-success">
@@ -24,7 +24,7 @@
                 </div>
             @endif
 
-            <form method="POST" action="{{ route('plat.update',$plat->id) }}" enctype="multipart/form-data" >
+            <form method="POST" action="{{ route('plat.update',$plats->id) }}" enctype="multipart/form-data" >
 
 
                 @csrf
@@ -33,11 +33,11 @@
 
                     <div class="col-md-6">
                         <label class="col-form-label text-md-end">{{ __("Catégorie du Plat") }}</label>
-                        <select class="form-select" aria-label="" name="categories_id" @error('categories_id') is-invalid @enderror" value="{{ old('categories_id') }}" disabled>
+                        <select class="form-select" aria-label="" name="categories_id" @error('categories_id') is-invalid @enderror" disabled>
                             @foreach ($categories as $categorie)
-                                <option @selected($categorie->id == $plat->categories_id)
-                                    value="{{$categorie->id}}">{{$categorie->nom}}</option>
-                            @endforeach                         </select>
+                                <option @selected($categorie->id == $plats->categories_id) value="{{$categorie->id}}">{{$categorie->nom}}</option>
+                            @endforeach
+                        </select>
                         @error('categories_id')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -47,7 +47,7 @@
 
                     <div class="col-md-6">
                         <label class="col-form-label text-md-end">{{ __("Nom du plat") }}</label>
-                        <input type="text" name="nom" class="form-control @error('nom') is-invalid @enderror"  value="{{ $plat->nom }}" autocomplete="nom">
+                        <input type="text" name="nom" class="form-control @error('nom') is-invalid @enderror"  value="{{ $plats->nom }}" autocomplete="nom">
                         @error('nom')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -57,7 +57,7 @@
 
                     <div class="col-md-6">
                         <label class="col-form-label text-md-end">{{ __("Images") }}</label>
-                        <input type="file" name="images" class="form-control @error('images') is-invalid @enderror" value="images/plats/{{ $plat->image }}" autocomplete="images">
+                        <input type="file" name="images" class="form-control @error('images') is-invalid @enderror" value="images/plats/{{ $plats->image }}">
                         @error('images')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -70,9 +70,10 @@
 
                     <div class="col-md-6">
                         <label class="col-form-label text-md-end">{{ __("Disponible") }}</label>
-                        <select class="form-select" aria-label="" name="disponible" @error('disponible') is-invalid @enderror" name="disponible" value="{{ $plat->disponible }}" required>
-                                <option value="Oui" >Oui</option>
-                                <option value="Non" >Non</option>
+                        <select class="form-select" aria-label="" name="disponible" @error('disponible') is-invalid @enderror" name="disponible" required>
+                            <option @selected($plats->disponible) value="{{$plats->disponible}}">{{$plats->disponible}}</option>
+                            <option value="Oui" >Oui</option>
+                            <option value="Non" >Non</option>
                          </select>
                         @error('disponible')
                             <span class="invalid-feedback" role="alert">
@@ -83,7 +84,7 @@
 
                     <div class="col-md-6">
                         <label class="col-form-label text-md-end">{{ __("Prix") }}</label>
-                        <input type="text" name="prix" class="form-control @error('prix') is-invalid @enderror"  value="{{ $plat->prix }}" required autocomplete="prix">
+                        <input type="text" name="prix" class="form-control @error('prix') is-invalid @enderror"  value="{{ $plats->prix }}" required autocomplete="prix">
                         @error('prix')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -95,7 +96,7 @@
                 <div class="row mb-3">
                     <div class="col-md-12">
                         <label class="col-form-label text-md-end">{{ __("Description") }}</label>
-                        <textarea type="text" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ $plat->description }}" autocomplete="description"rows="3"></textarea>
+                        <textarea type="text" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ $plats->description }}" autocomplete="description"rows="3"></textarea>
                         @error('description')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

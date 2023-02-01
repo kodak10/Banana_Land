@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\plat;
 use App\Models\Panier;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PanierController extends Controller
 {
@@ -15,10 +16,15 @@ class PanierController extends Controller
      */
     public function index()
     {
-        $PanierItems = panier::get();
-        // dd($cartItems);
-        return view('panier.index', compact('PanierItems'));
+        $Paniers = DB::table('paniers')
+                            ->join('plats', 'paniers.id', '=', 'plats.id')
+                            ->select('plats.*', 'plats.nom', 'plats.images')
+                            ->orderBy('nom' , 'asc')
+                            ->paginate(8);
 
+        $PanierItems = panier::get();
+
+        return view('panier.index', compact('Paniers', 'PanierItems'));
     }
 
     /**
@@ -28,7 +34,7 @@ class PanierController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -40,19 +46,13 @@ class PanierController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nom' => 'required',
-            'description'  =>  'required',
-            //'image' =>  'required|jpg,png',
-            'prix' => 'integer',
+            'plats_id' => 'required',
         ]);
 
-        Panier::create([
-            'nom' => $request['nom'],
-            'description' => $request['description'],
-            'prix' => $request['prix'],
-        ]);
+        $input = $request->all();
+        Panier::create($input);
+
         return redirect(route('vente.index'))->with('success', 'Ajouté au panier');
-
     }
 
     /**
@@ -63,7 +63,7 @@ class PanierController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -74,7 +74,7 @@ class PanierController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
